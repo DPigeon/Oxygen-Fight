@@ -33,7 +33,6 @@ public class PlayerController : MonoBehaviour {
 
         animator.SetBool("isSwimming", isSwimming);
         animator.SetBool("isSwimmingFast", isSwimmingFast);
-
     }
 
     private void ControlCharacter() {
@@ -48,27 +47,39 @@ public class PlayerController : MonoBehaviour {
 
         if (Input.GetButton("Up")) {
             transform.Translate(Vector2.up * speed * Time.deltaTime);
-            SpriteDirection(Vector2.up); // Have to fix this rotation
+            SpriteDirectionUp(Vector2.up); 
             isSwimming = true;
         }
         if (Input.GetButton("Down")) {
             transform.Translate(-Vector2.up * speed * Time.deltaTime);
-            SpriteDirection(-Vector2.up); // Have to fix this rotation
+            SpriteDirectionUp(-Vector2.up); 
             isSwimming = true;
         }
         if (Input.GetButton("Left")) {
             transform.Translate(-Vector2.right * speed * Time.deltaTime);
-            SpriteDirection(-Vector2.right);
+            SpriteDirectionRight(-Vector2.right);
             isSwimming = true;
         }
         if (Input.GetButton("Right")) {
             transform.Translate(Vector2.right * speed * Time.deltaTime);
-            SpriteDirection(Vector2.right);
+            SpriteDirectionRight(Vector2.right);
             isSwimming = true;
         }
+
+        /* Reseting animation to idle if not swimming */
+        if (!isSwimming) SpriteDirectionRight(Vector2.right);
     }
 
-    private void SpriteDirection(Vector2 direction) {
+    /* 
+     * Sprite Directions (up, down & right, left)
+     */
+    private void SpriteDirectionUp(Vector2 direction)
+    {
+        Quaternion rotation3D = direction == Vector2.up ? Quaternion.LookRotation(Vector3.back, Vector3.right) : Quaternion.LookRotation(Vector3.back, Vector3.left);
+        spriteChild.rotation = rotation3D;
+    }
+
+    private void SpriteDirectionRight(Vector2 direction) {
         Quaternion rotation3D = direction == Vector2.right ? Quaternion.LookRotation(Vector3.forward) : Quaternion.LookRotation(Vector3.back);
         spriteChild.rotation = rotation3D;
     }
