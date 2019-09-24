@@ -46,6 +46,16 @@ public class PlayerController : MonoBehaviour {
 
         isSwimming = false;
 
+        if (Input.GetButton("Up")) {
+            transform.Translate(Vector2.up * speed * Time.deltaTime);
+            SpriteDirection(Vector2.up); // Have to fix this rotation
+            isSwimming = true;
+        }
+        if (Input.GetButton("Down")) {
+            transform.Translate(-Vector2.up * speed * Time.deltaTime);
+            SpriteDirection(-Vector2.up); // Have to fix this rotation
+            isSwimming = true;
+        }
         if (Input.GetButton("Left")) {
             transform.Translate(-Vector2.right * speed * Time.deltaTime);
             SpriteDirection(-Vector2.right);
