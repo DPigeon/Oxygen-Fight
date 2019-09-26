@@ -83,4 +83,9 @@ public class PlayerController : MonoBehaviour {
         Quaternion rotation3D = direction == Vector2.right ? Quaternion.LookRotation(Vector3.forward) : Quaternion.LookRotation(Vector3.back);
         spriteChild.rotation = rotation3D;
     }
+
+    public void DecreaseSpeed(float number) {
+        swimSpeed = swimSpeed - number;
+        swimFastSpeed = swimFastSpeed - number;
+    }
 }
