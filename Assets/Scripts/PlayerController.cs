@@ -88,4 +88,9 @@ public class PlayerController : MonoBehaviour {
         swimSpeed = swimSpeed - number;
         swimFastSpeed = swimFastSpeed - number;
     }
+
+    public void ResetSpeed() {
+        swimSpeed = 0.9F;
+        swimFastSpeed = 1.5F;
+    }
 }
