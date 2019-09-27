@@ -5,7 +5,6 @@ using UnityEngine;
 public class GoldenItem : MonoBehaviour
 {
     PlayerController player;
-    UIHandler uiHandler;
     Boat boat;
 
     Vector3 collectedItemPosition = new Vector3(7.0F, 4.5F, 0.0F);
@@ -21,39 +20,30 @@ public class GoldenItem : MonoBehaviour
      * We look if our item collected inventory is empty as well
      */
     void OnTriggerEnter2D(Collider2D collider) {
+        player = GameObject.Find("Player").GetComponent<PlayerController>();
         boat = GameObject.Find("Boat").GetComponent<Boat>();
-        if (collider.gameObject.name == "Player" && gameObject.name == "Small Golden Bar" && boat.itemsCollected.Count == 0) {
+        if (collider.gameObject.name == "Player" && boat.itemsCollected.Count == 0) {
+            if (gameObject.name == "Small Golden Bar(Clone)") {
+                // Display bar on top
+                gameObject.transform.position = collectedItemPosition;
+    
+                boat.AddItem(scoreSmallBar, gameObject);
+                player.DecreaseSpeed(speedDecreaseSmallBar);
+            }
+            if (gameObject.name == "Medium Golden Bar(Clone)") {
+                // Display bar on top
+                gameObject.transform.position = collectedItemPosition;
 
-            // Display bar on top
-            gameObject.transform.position = collectedItemPosition;
+                boat.AddItem(scoreMediumBar, gameObject);
+                player.DecreaseSpeed(speedDecreaseMediumBar);
+            }
+            if (gameObject.name == "Golden Bag(Clone)") {
+                // Display bar on top
+                gameObject.transform.position = collectedItemPosition;
 
-            boat.AddItem(scoreSmallBar);
-
-            // Decrease player speed
-            player = GameObject.Find("Player").GetComponent<PlayerController>();
-            player.DecreaseSpeed(speedDecreaseSmallBar);
-        }
-        if (collider.gameObject.name == "Player" && gameObject.name == "Medium Golden Bar" && boat.itemsCollected.Count == 0) {
-
-            // Display bar on top
-            gameObject.transform.position = collectedItemPosition;
-
-            boat.AddItem(scoreMediumBar);
-
-            // Decrease player speed
-            player = GameObject.Find("Player").GetComponent<PlayerController>();
-            player.DecreaseSpeed(speedDecreaseMediumBar);
-        }
-        if (collider.gameObject.name == "Player" && gameObject.name == "Golden Bag" && boat.itemsCollected.Count == 0) {
-
-            // Display bar on top
-            gameObject.transform.position = collectedItemPosition;
-
-            boat.AddItem(scoreBag);
-
-            // Decrease player speed
-            player = GameObject.Find("Player").GetComponent<PlayerController>();
-            player.DecreaseSpeed(speedDecreaseBag);
+                boat.AddItem(scoreBag, gameObject);
+                player.DecreaseSpeed(speedDecreaseBag);
+            }
         }
     }
 }
