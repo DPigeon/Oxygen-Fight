@@ -14,10 +14,13 @@ public class Boat : MonoBehaviour
     int scoreMediumBar = 2;
     int scoreBag = 10;
 
+    void Start() {
+        player = GameObject.Find("Player").GetComponent<PlayerController>();
+        uiHandler = GameObject.Find("ScoreText").GetComponent<UIHandler>();
+    }
+
     void OnTriggerEnter2D(Collider2D collider) {
         if (itemsCollected.Count != 0 && collider.gameObject.name == "Player") {
-            player = GameObject.Find("Player").GetComponent<PlayerController>();
-            uiHandler = GameObject.Find("ScoreText").GetComponent<UIHandler>();
             if (itemsCollected[itemsCollected.Count - 1] == 1) {
                 player.ResetSpeed();
                 uiHandler.IncrementScore(scoreSmallBar);

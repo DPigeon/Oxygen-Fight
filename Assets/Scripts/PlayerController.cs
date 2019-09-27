@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour {
     /* 
      * Initializing all our variables
      */
+    LifeGenerator lifeGenerator;
+    
     [SerializeField]
     float swimSpeed;
 
@@ -14,6 +16,7 @@ public class PlayerController : MonoBehaviour {
 
     bool isSwimming;
     bool isSwimmingFast;
+    Vector3 respawnPosition = new Vector3(0, 2, 0);
 
     Animator animator;
     Rigidbody2D rigidBody2D;
@@ -26,6 +29,7 @@ public class PlayerController : MonoBehaviour {
         animator = GetComponent<Animator>();
         rigidBody2D = GetComponent<Rigidbody2D>();
         spriteChild = transform.Find("PlayerSprite");
+        lifeGenerator = GameObject.Find("LifeGenerator").GetComponent<LifeGenerator>();
     }
 
     void Update() {
@@ -33,6 +37,21 @@ public class PlayerController : MonoBehaviour {
 
         animator.SetBool("isSwimming", isSwimming);
         animator.SetBool("isSwimmingFast", isSwimmingFast);
+    }
+
+    void OnTriggerEnter2D(Collider2D collider) {
+        if (collider.gameObject.name == "Shark" || collider.gameObject.name == "Octopus") {
+            // Create some animation of hurting here & sound later
+            if (lifeGenerator.lives.Count == 2) {
+                lifeGenerator.RemoveLife();
+            }
+            else if (lifeGenerator.lives.Count == 1) {
+                lifeGenerator.RemoveLife();
+                transform.position = respawnPosition;
+                lifeGenerator.Generate();
+                // Make player drawn animation here later
+            }
+        }
     }
 
     private void ControlCharacter() {

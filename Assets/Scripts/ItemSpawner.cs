@@ -18,9 +18,9 @@ public class ItemSpawner : MonoBehaviour
     float spawnRate = 2F;
     float nextSpawn = 0.0F;
     float randomItem; // Either 0 (small bar), 1 (medium bar) or 2 (bag)
-    float aliveSmallBarTime = 10.0F;
-    float aliveMediumBarTime = 8.0f;
-    float aliveBagTime = 4.0f;
+    float aliveSmallBarTime = 9.3F;
+    float aliveMediumBarTime = 7.7f;
+    float aliveBagTime = 4.5f;
 
     void Start() {    
     }
@@ -35,7 +35,7 @@ public class ItemSpawner : MonoBehaviour
             if (randomItem == 0) { 
                 rotation = new Vector3(0F, 0F, -90.5F);
                 GameObject smallBar = Instantiate(SmallGoldenBar, spawnedPosition, Quaternion.Euler(rotation)) as GameObject;
-                Destroy(smallBar, aliveSmallBarTime);
+                Destroy(smallBar, aliveSmallBarTime); // Destroy within a delay
             }
             else if (randomItem == 1) {
                 rotation = new Vector3(0F, 0F, -90.5F);

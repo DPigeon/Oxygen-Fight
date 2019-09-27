@@ -15,13 +15,16 @@ public class GoldenItem : MonoBehaviour
     int scoreMediumBar = 2;
     int scoreBag = 10;
 
+    void Start() {
+        player = GameObject.Find("Player").GetComponent<PlayerController>();
+        boat = GameObject.Find("Boat").GetComponent<Boat>();
+    }
+
     /* 
      * If golden item collides with Player, then we display a bar on top (shows that he has it in his bag)
      * We look if our item collected inventory is empty as well
      */
     void OnTriggerEnter2D(Collider2D collider) {
-        player = GameObject.Find("Player").GetComponent<PlayerController>();
-        boat = GameObject.Find("Boat").GetComponent<Boat>();
         if (collider.gameObject.name == "Player" && boat.itemsCollected.Count == 0) {
             if (gameObject.name == "Small Golden Bar(Clone)") {
                 // Display bar on top
