@@ -15,8 +15,12 @@ public class ItemSpawner : MonoBehaviour
     Vector3 rotation;
     float randomX;
     float screenX = 10.5F;
-    float spawnRate = 10F;
+    float spawnRate = 2F;
     float nextSpawn = 0.0F;
+    float randomItem; // Either 0 (small bar), 1 (medium bar) or 2 (bag)
+    float aliveSmallBarTime = 10.0F;
+    float aliveMediumBarTime = 8.0f;
+    float aliveBagTime = 4.0f;
 
     void Start() {    
     }
@@ -26,8 +30,24 @@ public class ItemSpawner : MonoBehaviour
             nextSpawn = Time.time + spawnRate;
             randomX = Random.Range(-screenX, screenX);
             spawnedPosition = new Vector2(randomX, transform.position.y);
-            rotation = new Vector3(0F, 0F, -90.5F);
-            Instantiate(SmallGoldenBar, spawnedPosition, Quaternion.Euler(rotation));
+            float randomItem = Random.Range(-1, 3);
+
+            if (randomItem == 0) { 
+                rotation = new Vector3(0F, 0F, -90.5F);
+                GameObject smallBar = Instantiate(SmallGoldenBar, spawnedPosition, Quaternion.Euler(rotation)) as GameObject;
+                Destroy(smallBar, aliveSmallBarTime);
+            }
+            else if (randomItem == 1) {
+                rotation = new Vector3(0F, 0F, -90.5F);
+                GameObject mediumBar = Instantiate(MediumGoldenBar, spawnedPosition, Quaternion.Euler(rotation)) as GameObject;
+                Destroy(mediumBar, aliveMediumBarTime);
+            }
+            else if (randomItem == 2) {
+                spawnedPosition = new Vector2(randomX, transform.position.y + 0.15F);
+                GameObject bag = Instantiate(GoldenBag, spawnedPosition, Quaternion.identity) as GameObject;
+                Destroy(bag, aliveBagTime);
+            }
         }
+
     }
 }
