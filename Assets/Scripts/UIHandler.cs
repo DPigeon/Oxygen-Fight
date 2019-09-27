@@ -13,8 +13,7 @@ public class UIHandler : MonoBehaviour
         levelText = GameObject.Find("LevelText").GetComponent<Text>();
     }
 
-    void Update()
-    {
+    void Update() {
         scoreText.text = "Score: " + score.ToString("0");
         levelText.text = "Level: " + level.ToString("0");
     }
@@ -26,5 +25,4 @@ public class UIHandler : MonoBehaviour
     public void LevelUp() {
         level++;
     }
-
 }

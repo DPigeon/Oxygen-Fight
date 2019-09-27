@@ -73,8 +73,7 @@ public class PlayerController : MonoBehaviour {
     /* 
      * Sprite Directions (up, down & right, left)
      */
-    private void SpriteDirectionUp(Vector2 direction)
-    {
+    private void SpriteDirectionUp(Vector2 direction) {
         Quaternion rotation3D = direction == Vector2.up ? Quaternion.LookRotation(Vector3.back, Vector3.right) : Quaternion.LookRotation(Vector3.back, Vector3.left);
         spriteChild.rotation = rotation3D;
     }
