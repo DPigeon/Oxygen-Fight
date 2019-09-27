@@ -11,6 +11,7 @@ public class ItemSpawner : MonoBehaviour
     [SerializeField]
     GameObject GoldenBag;
 
+    Boat boat;
     Vector2 spawnedPosition;
     Vector3 rotation;
     float randomX;
@@ -22,7 +23,8 @@ public class ItemSpawner : MonoBehaviour
     float aliveMediumBarTime = 7.7f;
     float aliveBagTime = 4.5f;
 
-    void Start() {    
+    void Start() {
+        boat = GameObject.Find("Boat").GetComponent<Boat>();
     }
 
     void Update() {
@@ -47,7 +49,10 @@ public class ItemSpawner : MonoBehaviour
                 GameObject bag = Instantiate(GoldenBag, spawnedPosition, Quaternion.identity) as GameObject;
                 Destroy(bag, aliveBagTime);
             }
+            // Don't destroy if in inventory (DEFECT: once the destroy timer finishes, the gameObject destroys in inventory)
+            else if (boat.itemsCollected[boat.itemsCollected.Count - 1] == 0 || boat.itemsCollected[boat.itemsCollected.Count - 1] == 2 || boat.itemsCollected[boat.itemsCollected.Count - 1] == 10) {
+                //GameObject smallBar = Instantiate(SmallGoldenBar, spawnedPosition, Quaternion.Euler(rotation)) as GameObject;
+            }
         }
-
     }
 }

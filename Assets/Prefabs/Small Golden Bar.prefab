@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5982553271109555123}
   - component: {fileID: 5982553271109555122}
-  - component: {fileID: 5982553271109555132}
   - component: {fileID: 5982553271109555121}
+  - component: {fileID: 5982553271109555132}
   m_Layer: 0
   m_Name: Small Golden Bar
   m_TagString: Untagged
@@ -81,6 +81,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5982553271109555121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5982553271109555120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42a63dc89f140b64d8026049763c6d87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!61 &5982553271109555132
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -107,15 +119,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.28801942, y: 1.3513192}
   m_EdgeRadius: 0
---- !u!114 &5982553271109555121
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5982553271109555120}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42a63dc89f140b64d8026049763c6d87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
