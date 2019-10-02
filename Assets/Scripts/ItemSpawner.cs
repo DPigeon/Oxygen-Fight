@@ -50,9 +50,7 @@ public class ItemSpawner : MonoBehaviour
                 Destroy(bag, aliveBagTime);
             }
             // Don't destroy if in inventory (DEFECT: once the destroy timer finishes, the gameObject destroys in inventory)
-            else if (boat.itemsCollected[boat.itemsCollected.Count - 1] == 0 || boat.itemsCollected[boat.itemsCollected.Count - 1] == 2 || boat.itemsCollected[boat.itemsCollected.Count - 1] == 10) {
-                //GameObject smallBar = Instantiate(SmallGoldenBar, spawnedPosition, Quaternion.Euler(rotation)) as GameObject;
-            }
+            
         }
     }
 }
