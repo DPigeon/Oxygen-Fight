@@ -1003,7 +1003,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1052186841}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d22c273e0e12874aac1b82e4c105dcd, type: 3}
+  m_Script: {fileID: 11500000, guid: 28da08e479b555e48a423f2a7662c1a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1052186844
@@ -1037,7 +1037,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Level: 0'
+  m_Text: 
 --- !u!222 &1052186845
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1055,6 +1055,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1177894506}
+  - component: {fileID: 1177894507}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -1076,6 +1077,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1177894507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177894505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28da08e479b555e48a423f2a7662c1a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1578648754
 GameObject:
   m_ObjectHideFlags: 0
@@ -1684,7 +1697,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Score: 0'
+  m_Text: 
 --- !u!222 &2097534429
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1702,6 +1715,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2097534426}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d22c273e0e12874aac1b82e4c105dcd, type: 3}
+  m_Script: {fileID: 11500000, guid: 65d1b1604589ff54fae81af70d441399, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

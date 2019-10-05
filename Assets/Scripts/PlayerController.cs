@@ -18,9 +18,8 @@ public class PlayerController : MonoBehaviour {
     float hurtDuration = 1.0f;
     float hurtTimer;
     float limit = 6.5F; // Screen limit
-    float damagePushForce = 2.5F;
     Vector2 faceDirection;
-    Vector3 respawnPosition = new Vector3(0, 2, 0);
+    Vector3 respawnPosition = new Vector3(0, 1.8F, 0);
 
     AudioSource hurtSound;
     AudioSource dieSound;

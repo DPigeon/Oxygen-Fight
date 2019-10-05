@@ -5,7 +5,7 @@ using UnityEngine;
 public class Boat : MonoBehaviour {
     GoldenItem item;
     PlayerController player;
-    UIHandler uiHandler;
+    ScoreManager scoreManager;
 
     public List<int> itemsCollected = new List<int>(); // To keep track of the elements picked (1, 2 or 10)
     public List<GameObject> items = new List<GameObject>(); // Keep track of the GoldenItem ID
@@ -15,26 +15,26 @@ public class Boat : MonoBehaviour {
 
     void Start() {
         player = GameObject.Find("Player").GetComponent<PlayerController>();
-        uiHandler = GameObject.Find("ScoreText").GetComponent<UIHandler>();
+        scoreManager = GameObject.Find("ScoreText").GetComponent<ScoreManager>();
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
         if (itemsCollected.Count != 0 && collider.gameObject.name == "Player") {
             if (itemsCollected[itemsCollected.Count - 1] == 1) {
                 player.ResetSpeed();
-                uiHandler.IncrementScore(scoreSmallBar);
+                scoreManager.IncrementScore(scoreSmallBar);
                 itemsCollected.Clear();
                 Destroy(items[items.Count - 1]);
             }
             else if (itemsCollected[itemsCollected.Count - 1] == 2) {
                 player.ResetSpeed();
-                uiHandler.IncrementScore(scoreMediumBar);
+                scoreManager.IncrementScore(scoreMediumBar);
                 itemsCollected.Clear();
                 Destroy(items[items.Count - 1]);
             }
             else if (itemsCollected[itemsCollected.Count - 1] == 10) {
                 player.ResetSpeed();
-                uiHandler.IncrementScore(scoreBag);
+                scoreManager.IncrementScore(scoreBag);
                 itemsCollected.Clear();
                 Destroy(items[items.Count - 1]);
             }

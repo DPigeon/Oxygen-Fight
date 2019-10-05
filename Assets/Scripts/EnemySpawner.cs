@@ -19,10 +19,11 @@ public class EnemySpawner : MonoBehaviour {
     float spawnOctopusInterval = 22.0F;
     float sharkAliveTime;
     float octopusAliveTime;
+    public List<GameObject> enemies = new List<GameObject>();
 
     void Start() {
-        sharkAliveTime = spawnSharkInterval + 5.0F;
-        octopusAliveTime = spawnOctopusInterval + 10.0F;
+        sharkAliveTime = spawnSharkInterval - 10.0F;
+        octopusAliveTime = spawnOctopusInterval - 5.0F;
     }
 
     void Update() {
@@ -49,7 +50,8 @@ public class EnemySpawner : MonoBehaviour {
             }
             GameObject shark = Instantiate(SharkPrefab, spawnedPosition, Quaternion.LookRotation(spriteDirection)) as GameObject;
             shark.transform.localScale = new Vector3(randomSize, randomSize, randomSize);
-            Destroy(shark, sharkAliveTime);
+            enemies.Add(shark);
+            RemoveEnemy(shark);
         }
     }
 
@@ -70,7 +72,23 @@ public class EnemySpawner : MonoBehaviour {
                 spriteDirection = Vector3.back;
             }
             GameObject octopus = Instantiate(OctopusPrefab, spawnedPosition, Quaternion.LookRotation(spriteDirection)) as GameObject;
-            Destroy(octopus, octopusAliveTime);
+            enemies.Add(octopus);
+            RemoveEnemy(octopus);
+        }
+    }
+
+    public void RemoveEnemy(GameObject enemy) {
+        int index = enemies.IndexOf(enemy);
+        Destroy(enemies[index], octopusAliveTime);
+        enemies.RemoveAt(index);
+    }
+
+    public void DeleteAll() {
+        if (enemies.Count != 0) {
+            for (int i = 0; i < enemies.Count; i++) {
+                Destroy(enemies[i]);
+            }
+            enemies.Clear();
         }
     }
 }

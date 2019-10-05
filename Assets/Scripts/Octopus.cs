@@ -2,16 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Octopus : MonoBehaviour
-{
-    float limit = 5.8F;
-    float speed = 3.0F; // Will increase after a fixed time hinting towards change of level
-
-    void Start() {
+public class Octopus : Enemy {
+    public override void Start() {
+        limit = 5.8F;
+        speed = 2.5F;
     }
 
-    void Update() {
-        transform.Translate(-Vector2.left * speed * Time.deltaTime);
+    public override void Update() {
+        base.Update();
         if (transform.position.x < -limit )
         {
             transform.rotation = Quaternion.LookRotation(Vector3.forward);
@@ -20,5 +18,9 @@ public class Octopus : MonoBehaviour
         {
             transform.rotation = Quaternion.LookRotation(Vector3.back);
         }
+    }
+
+    public override void ResetSpeed() {
+        speed = 2.5F;
     }
 }
