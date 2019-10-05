@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Octopus : MonoBehaviour
 {
-    float limit = 10.0F;
+    float limit = 5.8F;
     float speed = 3.0F; // Will increase after a fixed time hinting towards change of level
 
     void Start() {

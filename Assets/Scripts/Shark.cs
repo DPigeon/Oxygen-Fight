@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Shark : MonoBehaviour {
-    float limit = 11.0F;
+    float limit = 7.0F;
     float speed; // Will increase after a fixed time hinting towards change of level
     float spawnedPositionY;
 

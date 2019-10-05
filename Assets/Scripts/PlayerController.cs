@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour {
     bool isHurt;
     float hurtDuration = 1.0f;
     float hurtTimer;
-    float limit = 10.5F; // Screen limit
+    float limit = 6.5F; // Screen limit
     float damagePushForce = 2.5F;
     Vector2 faceDirection;
     Vector3 respawnPosition = new Vector3(0, 2, 0);
@@ -31,9 +31,9 @@ public class PlayerController : MonoBehaviour {
     LifeGenerator lifeGenerator;
 
     void Start() {
-       /*
-        * We get the components made in the player's inspector
-        */
+        /*
+         * We get the components made in the player's inspector
+         */
         animator = GetComponent<Animator>();
         rigidBody2D = GetComponent<Rigidbody2D>();
         spriteChild = transform.Find("PlayerSprite");

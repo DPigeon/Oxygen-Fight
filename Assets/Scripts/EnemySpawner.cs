@@ -9,10 +9,10 @@ public class EnemySpawner : MonoBehaviour {
     [SerializeField]
     GameObject OctopusPrefab;
 
-    float leftScreenX = -11.0F;
-    float leftScreenY1 = 1.25F;
+    float leftScreenX = -7.0F;
+    float leftScreenY1 = 1.40F;
     float leftScreenY2 = -4.15F;
-    float rightScreenX = 11.0F;
+    float rightScreenX = 7.0F;
     float nextSharkSpawn = 0.0F;
     float nextOctopusSpawn = 0.0F; // Will have to change according to levels (at least twice each level)
     float spawnSharkInterval = 20.0F; // Will change according to levels

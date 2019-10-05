@@ -14,7 +14,7 @@ public class ItemSpawner : MonoBehaviour {
     Vector2 spawnedPosition;
     Vector3 rotation;
     float randomX;
-    float screenX = 10.5F;
+    float screenX = 6.0F;
     float spawnRate = 2F;
     float nextSpawn = 0.0F;
     float randomItem; // Either 0 (small bar), 1 (medium bar) or 2 (bag)

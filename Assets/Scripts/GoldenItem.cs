@@ -6,7 +6,7 @@ public class GoldenItem : MonoBehaviour {
     PlayerController player;
     Boat boat;
 
-    Vector3 collectedItemPosition = new Vector3(7.0F, 4.5F, 0.0F);
+    Vector3 collectedItemPosition = new Vector3(3.83F, 4.57F, 0.0F);
     float speedDecreaseSmallBar = 0.4F;
     float speedDecreaseMediumBar = 0.5F;
     float speedDecreaseBag = 0.8F;
