@@ -6,8 +6,6 @@ public class PlayerController : MonoBehaviour {
     /* 
      * Initializing all our variables
      */
-    LifeGenerator lifeGenerator;
-    
     [SerializeField]
     float swimSpeed;
 
@@ -21,7 +19,8 @@ public class PlayerController : MonoBehaviour {
     Animator animator;
     Rigidbody2D rigidBody2D;
     Transform spriteChild;
-   
+    LifeGenerator lifeGenerator;
+
     void Start() {
        /*
         * We get the components made in the player's inspector
