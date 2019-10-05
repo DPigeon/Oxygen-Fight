@@ -14,8 +14,16 @@ public class PlayerController : MonoBehaviour {
 
     bool isSwimming;
     bool isSwimmingFast;
+    bool isHurt;
+    float hurtDuration = 1.0f;
+    float hurtTimer;
     float limit = 10.5F; // Screen limit
+    float damagePushForce = 2.5F;
+    Vector2 faceDirection;
     Vector3 respawnPosition = new Vector3(0, 2, 0);
+
+    AudioSource hurtSound;
+    AudioSource dieSound;
 
     Animator animator;
     Rigidbody2D rigidBody2D;
@@ -30,6 +38,11 @@ public class PlayerController : MonoBehaviour {
         rigidBody2D = GetComponent<Rigidbody2D>();
         spriteChild = transform.Find("PlayerSprite");
         lifeGenerator = GameObject.Find("LifeGenerator").GetComponent<LifeGenerator>();
+
+        // Audio
+        AudioSource[] audioSources = GetComponents<AudioSource>();
+        hurtSound = audioSources[0];
+        dieSound = audioSources[1];
     }
 
     void Update() {
@@ -38,6 +51,16 @@ public class PlayerController : MonoBehaviour {
 
         animator.SetBool("isSwimming", isSwimming);
         animator.SetBool("isSwimmingFast", isSwimmingFast);
+        animator.SetBool("isHurt", isHurt);
+
+        if (isHurt) {
+            hurtTimer += Time.deltaTime;
+            if (hurtTimer >= hurtDuration)
+            {
+                isHurt = false;
+                hurtTimer = 0.0f;
+            }
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
@@ -45,11 +68,14 @@ public class PlayerController : MonoBehaviour {
             // Create some animation of hurting here & sound later
             if (lifeGenerator.lives.Count == 2) {
                 lifeGenerator.RemoveLife();
+                isHurt = true;
+                //hurtSound.Play();
             }
             else if (lifeGenerator.lives.Count == 1) {
                 lifeGenerator.RemoveLife();
                 transform.position = respawnPosition;
                 lifeGenerator.Generate();
+                //dieSound.Play();
                 // Make player drawn animation here later
             }
         }
@@ -105,11 +131,13 @@ public class PlayerController : MonoBehaviour {
      * Sprite Directions (up, down & right, left)
      */
     private void SpriteDirectionUp(Vector2 direction) {
+        faceDirection = direction;
         Quaternion rotation3D = direction == Vector2.up ? Quaternion.LookRotation(Vector3.back, Vector3.right) : Quaternion.LookRotation(Vector3.back, Vector3.left);
         spriteChild.rotation = rotation3D;
     }
 
     private void SpriteDirectionRight(Vector2 direction) {
+        faceDirection = direction;
         Quaternion rotation3D = direction == Vector2.right ? Quaternion.LookRotation(Vector3.forward) : Quaternion.LookRotation(Vector3.back);
         spriteChild.rotation = rotation3D;
     }
