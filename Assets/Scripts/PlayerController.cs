@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
-        if (collider.gameObject.name == "Shark" || collider.gameObject.name == "Octopus") {
+        if (collider.gameObject.name == "Shark(Clone)" || collider.gameObject.name == "Octopus(Clone)") {
             // Create some animation of hurting here & sound later
             if (lifeGenerator.lives.Count == 2) {
                 lifeGenerator.RemoveLife();

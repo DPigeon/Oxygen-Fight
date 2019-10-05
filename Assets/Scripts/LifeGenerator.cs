@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LifeGenerator : MonoBehaviour
-{
+public class LifeGenerator : MonoBehaviour {
     [SerializeField]
     GameObject Life;
 

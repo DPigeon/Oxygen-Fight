@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class UIHandler : MonoBehaviour
-{
+public class UIHandler : MonoBehaviour {
     Text scoreText;
     Text levelText;
     int score = 0; // Will have to change depending on gold bars

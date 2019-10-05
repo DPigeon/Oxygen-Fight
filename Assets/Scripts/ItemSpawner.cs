@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemSpawner : MonoBehaviour
-{
+public class ItemSpawner : MonoBehaviour {
     [SerializeField]
     GameObject SmallGoldenBar;
     [SerializeField]

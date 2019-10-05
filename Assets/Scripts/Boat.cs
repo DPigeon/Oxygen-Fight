@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boat : MonoBehaviour
-{
+public class Boat : MonoBehaviour {
     GoldenItem item;
     PlayerController player;
     UIHandler uiHandler;

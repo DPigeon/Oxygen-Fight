@@ -12,9 +12,10 @@ public class SharkSpawner : MonoBehaviour {
     float rightScreenX = 11.0F;
     float nextSpawn = 0.0F;
     float spawnInterval = 20.0F; // Will change according to levels
+    float sharkAliveTime;
 
     void Start() {
-        
+        sharkAliveTime = spawnInterval + 5.0F;
     }
 
     void Update() {
@@ -36,6 +37,7 @@ public class SharkSpawner : MonoBehaviour {
             }
             GameObject shark = Instantiate(SharkPrefab, spawnedPosition, Quaternion.LookRotation(spriteDirection)) as GameObject;
             shark.transform.localScale = new Vector3(randomSize, randomSize, randomSize);
+            Destroy(shark, sharkAliveTime);
         }
     }
 }
