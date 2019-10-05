@@ -20,6 +20,5 @@ public class Shark : MonoBehaviour {
         else if (transform.position.x > limit) {
             transform.position = new Vector2(-limit, spawnedPositionY);
         }
-
     }
 }

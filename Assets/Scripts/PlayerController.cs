@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour {
 
     bool isSwimming;
     bool isSwimmingFast;
+    float limit = 10.5F; // Screen limit
     Vector3 respawnPosition = new Vector3(0, 2, 0);
 
     Animator animator;
@@ -33,6 +34,7 @@ public class PlayerController : MonoBehaviour {
 
     void Update() {
         ControlCharacter();
+        CheckBoundaries();
 
         animator.SetBool("isSwimming", isSwimming);
         animator.SetBool("isSwimmingFast", isSwimmingFast);
@@ -86,6 +88,17 @@ public class PlayerController : MonoBehaviour {
 
         /* Reseting animation to idle if not swimming */
         if (!isSwimming) SpriteDirectionRight(Vector2.right);
+    }
+
+    private void CheckBoundaries() {
+        if (transform.position.x < -limit)
+        {
+            transform.position = new Vector2(limit, transform.position.y);
+        }
+        else if (transform.position.x > limit)
+        {
+            transform.position = new Vector2(-limit, transform.position.y);
+        }
     }
 
     /* 
