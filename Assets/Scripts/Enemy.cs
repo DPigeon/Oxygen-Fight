@@ -15,11 +15,10 @@ public class Enemy : MonoBehaviour {
         transform.Translate(-Vector2.left * speed * Time.deltaTime);
     }
 
-    public void IncrementSpeed(int number) {
+    public virtual void IncrementSpeed(float number) {
         speed = speed + number;
     }
 
     public virtual void ResetSpeed() {
-
     }
 }

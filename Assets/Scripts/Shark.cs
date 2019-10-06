@@ -20,6 +20,10 @@ public class Shark : Enemy {
         }
     }
 
+    public override void IncrementSpeed(float number) {
+        Debug.Log("increment");
+    }
+
     public override void ResetSpeed() {
         speed = Random.Range(1.0F, 5.0F);
     }

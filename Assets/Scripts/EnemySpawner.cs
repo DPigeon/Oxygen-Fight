@@ -44,7 +44,7 @@ public class EnemySpawner : MonoBehaviour {
                 spawnedPosition = new Vector2(leftScreenX, y);
                 spriteDirection = Vector3.forward;
             }
-            else { 
+            else {
                 spawnedPosition = new Vector2(rightScreenX, y);
                 spriteDirection = Vector3.back;
             }
