@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour {
     Text levelText;
-    EnemySpawner enemySpawner;
+    ItemSpawner itemSpawner;
 
     float levelInterval = 10.0F;
     float nextLevelTimer = 5F;
@@ -13,7 +13,7 @@ public class LevelManager : MonoBehaviour {
     void Start() {
         level = 0;
         levelText = GameObject.Find("LevelText").GetComponent<Text>();
-        enemySpawner = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>();
+        itemSpawner = GameObject.Find("ItemSpawner").GetComponent<ItemSpawner>();
     }
 
     void Update() {
@@ -28,25 +28,26 @@ public class LevelManager : MonoBehaviour {
 
     /* Increase the speed of all enemies before level ends */
     private void SpeedUpBeforeLevelUp() {
-        if (nextLevel > 0 && Time.time > nextLevel - levelInterval && enemySpawner.enemies.Count != 0) {
-            Debug.Log("hi");
-            for (int i = 0; i < enemySpawner.enemies.Count; i++) {
-                enemySpawner.enemies[i].GetComponent<Enemy>().IncrementSpeed(10.5F);
+        if (Time.time > nextLevel - levelInterval) {
+            if (itemSpawner.enemies.Count != 0) {
+                for (int i = 0; i < itemSpawner.enemies.Count; i++) {
+                    itemSpawner.enemies[i].GetComponent<Enemy>().ChangeSpeed(3.5F);
+                }
             }
         }     
     }
 
     private void ResetEnemiesSpeed() {
-        if (enemySpawner.enemies.Count != 0) {
-            for (int i = 0; i < enemySpawner.enemies.Count; i++)
-                enemySpawner.enemies[i].GetComponent<Enemy>().ResetSpeed();
+        if (itemSpawner.enemies.Count != 0) {
+            for (int i = 0; i < itemSpawner.enemies.Count; i++)
+                itemSpawner.enemies[i].GetComponent<Enemy>().ResetSpeed();
         }
     }
 
     public void LevelUp() {
         level++;
         ResetEnemiesSpeed();
-        enemySpawner.DeleteAll(); // Delete all enemies at beginning of new level
+        //enemySpawner.DeleteAll(); // Delete all enemies at beginning of new level
         // Could add some music or animation UI here
     }
 }

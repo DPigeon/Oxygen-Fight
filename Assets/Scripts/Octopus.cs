@@ -20,6 +20,10 @@ public class Octopus : Enemy {
         }
     }
 
+    public override void ChangeSpeed(float number) {
+        base.ChangeSpeed(number);
+    }
+
     public override void ResetSpeed() {
         speed = 2.5F;
     }

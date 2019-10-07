@@ -21,6 +21,7 @@ public class ItemSpawner : MonoBehaviour {
     float aliveSmallBarTime = 9.3F;
     float aliveMediumBarTime = 7.7f;
     float aliveBagTime = 4.5f;
+    public List<GameObject> enemies = new List<GameObject>(); // Enemies stored here
 
     void Start() {
         boat = GameObject.Find("Boat").GetComponent<Boat>();

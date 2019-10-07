@@ -9,6 +9,7 @@ public class EnemySpawner : MonoBehaviour {
     [SerializeField]
     GameObject OctopusPrefab;
 
+    ItemSpawner itemSpawner;
     float leftScreenX = -7.0F;
     float leftScreenY1 = 1.40F;
     float leftScreenY2 = -4.15F;
@@ -19,11 +20,12 @@ public class EnemySpawner : MonoBehaviour {
     float spawnOctopusInterval = 22.0F;
     float sharkAliveTime;
     float octopusAliveTime;
-    public List<GameObject> enemies = new List<GameObject>();
+    //public List<GameObject> enemies = new List<GameObject>();
 
     void Start() {
         sharkAliveTime = spawnSharkInterval - 10.0F;
         octopusAliveTime = spawnOctopusInterval - 5.0F;
+        itemSpawner = GameObject.Find("ItemSpawner").GetComponent<ItemSpawner>();
     }
 
     void Update() {
@@ -50,8 +52,8 @@ public class EnemySpawner : MonoBehaviour {
             }
             GameObject shark = Instantiate(SharkPrefab, spawnedPosition, Quaternion.LookRotation(spriteDirection)) as GameObject;
             shark.transform.localScale = new Vector3(randomSize, randomSize, randomSize);
-            enemies.Add(shark);
-            RemoveEnemy(shark);
+            itemSpawner.enemies.Add(shark);
+            //RemoveEnemy(shark);
         }
     }
 
@@ -72,23 +74,23 @@ public class EnemySpawner : MonoBehaviour {
                 spriteDirection = Vector3.back;
             }
             GameObject octopus = Instantiate(OctopusPrefab, spawnedPosition, Quaternion.LookRotation(spriteDirection)) as GameObject;
-            enemies.Add(octopus);
-            RemoveEnemy(octopus);
+            itemSpawner.enemies.Add(octopus);
+            //RemoveEnemy(octopus);
         }
     }
 
     public void RemoveEnemy(GameObject enemy) {
-        int index = enemies.IndexOf(enemy);
-        Destroy(enemies[index], octopusAliveTime);
-        enemies.RemoveAt(index);
+        int index = itemSpawner.enemies.IndexOf(enemy);
+        Destroy(itemSpawner.enemies[index], octopusAliveTime);
+        //itemSpawner.enemies.RemoveAt(index);
     }
 
     public void DeleteAll() {
-        if (enemies.Count != 0) {
-            for (int i = 0; i < enemies.Count; i++) {
-                Destroy(enemies[i]);
+        if (itemSpawner.enemies.Count != 0) {
+            for (int i = 0; i < itemSpawner.enemies.Count; i++) {
+                Destroy(itemSpawner.enemies[i]);
             }
-            enemies.Clear();
+            itemSpawner.enemies.Clear();
         }
     }
 }
