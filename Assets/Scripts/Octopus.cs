@@ -25,8 +25,8 @@ public class Octopus : Enemy {
         return speed;
     }
 
-    public override void ChangeSpeed(float number) {
-        base.ChangeSpeed(number);
+    public override void SetSpeed(float number) {
+        base.SetSpeed(number);
     }
 
     public override void IncrementSpeed(float speed) {

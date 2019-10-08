@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour {
         return speed;
     }
 
-    public virtual void ChangeSpeed(float number) {
+    public virtual void SetSpeed(float number) {
         speed = number;
     }
 

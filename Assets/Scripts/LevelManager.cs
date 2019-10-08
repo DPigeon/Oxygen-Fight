@@ -9,8 +9,9 @@ public class LevelManager : MonoBehaviour {
     float nextLevelTimer = 5.0F;
     /* LevelInterval + nextLevelTimer = entire level length in time */
     float nextLevel = 0.0F;
-    float speedLevelRate = 0.2F;
-    float speedIncrement = 0.001F;
+    float speedLevelRate = 1.2F;
+
+    bool readyToLevel = false;
     int level;
 
     void Start() {
@@ -26,26 +27,20 @@ public class LevelManager : MonoBehaviour {
             // Octopus has to appear at least twice in a level
             levelText.text = "Level: " + level.ToString("0");
         }
-        SpeedUpBeforeLevelUp();
+        else if (Time.time > nextLevel - levelInterval && Time.time < nextLevel && !readyToLevel) {
+            SpeedUpBeforeLevelUp();
+        }   
     }
 
     /* Increase the speed of all enemies before level ends */
     private void SpeedUpBeforeLevelUp() {
-        if (Time.time > nextLevel - levelInterval && Time.time < nextLevel) {
-            if (itemSpawner.enemies.Count != 0) {
-                for (int i = 0; i < itemSpawner.enemies.Count; i++) {
-                    float speed = itemSpawner.enemies[i].GetComponent<Enemy>().GetSpeed();
-                    itemSpawner.enemies[i].GetComponent<Enemy>().ChangeSpeed(speed + speedIncrement);
-                }
-            }
-        }     
-    }
-
-    private void IncrementSpeed() { // Increment speed a bit after each level
         if (itemSpawner.enemies.Count != 0) {
-            for (int i = 0; i < itemSpawner.enemies.Count; i++)
+            for (int i = 0; i < itemSpawner.enemies.Count; i++) {
+                float speed = itemSpawner.enemies[i].GetComponent<Enemy>().GetSpeed();
                 itemSpawner.enemies[i].GetComponent<Enemy>().IncrementSpeed(speedLevelRate);
+            }
         }
+        readyToLevel = true;
     }
 
     public int GetLevel() {
@@ -57,8 +52,8 @@ public class LevelManager : MonoBehaviour {
     }
 
     public void LevelUp() {
+        readyToLevel = false;
         level++;
-        IncrementSpeed();
         //enemySpawner.DeleteAll(); // Delete all enemies at beginning of new level
         // Could add some music or animation UI here
     }

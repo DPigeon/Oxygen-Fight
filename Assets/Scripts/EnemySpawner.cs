@@ -11,14 +11,16 @@ public class EnemySpawner : MonoBehaviour {
 
     ItemSpawner itemSpawner;
     LevelManager levelManager;
+
     float leftScreenX = -7.0F;
     float leftScreenY1 = 1.40F;
     float leftScreenY2 = -4.15F;
     float rightScreenX = 7.0F;
+
     float nextSharkSpawn = 0.0F;
     float nextOctopusSpawn = 0.0F; // Will have to change according to levels (at least twice each level)
-    float spawnSharkInterval = 20.0F; // Will change according to levels
-    float spawnOctopusInterval = 22.0F;
+    float spawnSharkInterval = 10.0F; // Will change according to levels
+    float spawnOctopusInterval = 12.0F; // Have to appear twice in a level at random times
     float sharkAliveTime;
     float octopusAliveTime;
     float currentSpeedGameLevelShark;
@@ -59,7 +61,7 @@ public class EnemySpawner : MonoBehaviour {
             }
             GameObject shark = Instantiate(SharkPrefab, spawnedPosition, Quaternion.LookRotation(spriteDirection)) as GameObject;
             shark.transform.localScale = new Vector3(randomSize, randomSize, randomSize);
-            shark.GetComponent<Enemy>().speed = currentSpeedGameLevelShark;
+            shark.GetComponent<Shark>().SetSpeed(currentSpeedGameLevelShark);
             itemSpawner.enemies.Add(shark);
             Destroy(shark, sharkAliveTime);
         }
@@ -82,7 +84,7 @@ public class EnemySpawner : MonoBehaviour {
                 spriteDirection = Vector3.back;
             }
             GameObject octopus = Instantiate(OctopusPrefab, spawnedPosition, Quaternion.LookRotation(spriteDirection)) as GameObject;
-            octopus.GetComponent<Enemy>().speed = currentSpeedGameLevelOctopus;
+            octopus.GetComponent<Octopus>().SetSpeed(currentSpeedGameLevelOctopus);
             itemSpawner.enemies.Add(octopus);
             Destroy(octopus, octopusAliveTime);
         }
