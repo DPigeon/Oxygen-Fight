@@ -266,6 +266,8 @@ MonoBehaviour:
     type: 3}
   OctopusPrefab: {fileID: 9191733408893054559, guid: 8c4d29c94fa9c0d4ebdafac09fe17241,
     type: 3}
+  currentSpeedGameLevelShark: 0
+  currentSpeedGameLevelOctopus: 0
 --- !u!4 &261103781
 Transform:
   m_ObjectHideFlags: 0
@@ -684,6 +686,7 @@ MonoBehaviour:
     type: 3}
   GoldenBag: {fileID: 958538770286114164, guid: bfc503d413800624b84b6d83405f6064,
     type: 3}
+  enemies: []
 --- !u!4 &642678290
 Transform:
   m_ObjectHideFlags: 0
@@ -1006,6 +1009,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28da08e479b555e48a423f2a7662c1a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedLevelRate: 1.2
 --- !u!114 &1052186844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1089,6 +1093,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28da08e479b555e48a423f2a7662c1a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedLevelRate: 0.2
 --- !u!1 &1578648754
 GameObject:
   m_ObjectHideFlags: 0

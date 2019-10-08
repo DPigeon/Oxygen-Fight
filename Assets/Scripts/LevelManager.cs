@@ -2,14 +2,16 @@
 using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour {
+    [SerializeField]
+    float speedLevelRate = 0.2F;
+
     Text levelText;
     ItemSpawner itemSpawner;
 
-    float levelInterval = 10.0F; // Enemies will speed up 10 seconds before the next level
-    float nextLevelTimer = 5.0F;
+    float levelInterval = 10.0F; // Enemies will speed up levelInterval seconds before the next level
+    float nextLevelTimer = 30.0F;
     /* LevelInterval + nextLevelTimer = entire level length in time */
     float nextLevel = 0.0F;
-    float speedLevelRate = 1.2F;
 
     bool readyToLevel = false;
     int level;

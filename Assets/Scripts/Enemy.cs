@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour {
     public float speed; // Will increase after a fixed time hinting towards change of level
     public float spawnedPositionY;
 
-    EnemySpawner enemySpawner;
+    public EnemySpawner enemySpawner;
 
     public virtual void Start() {
         enemySpawner = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>();

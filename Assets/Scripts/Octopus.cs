@@ -6,7 +6,7 @@ public class Octopus : Enemy {
     public override void Start() {
         base.Start();
         limit = 5.8F;
-        speed = 2.3F;
+        speed = enemySpawner.currentSpeedGameLevelOctopus;
     }
 
     public override void Update() {

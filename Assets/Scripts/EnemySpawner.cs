@@ -18,19 +18,23 @@ public class EnemySpawner : MonoBehaviour {
     float rightScreenX = 7.0F;
 
     float nextSharkSpawn = 0.0F;
-    float nextOctopusSpawn = 0.0F; // Will have to change according to levels (at least twice each level)
+    float nextOctopusSpawn = 0.0F;
     float spawnSharkInterval = 10.0F; // Will change according to levels
-    float spawnOctopusInterval = 12.0F; // Have to appear twice in a level at random times
+    float spawnOctopusInterval; // Have to appear twice in a level at random times
     float sharkAliveTime;
     float octopusAliveTime;
-    float currentSpeedGameLevelShark;
-    float currentSpeedGameLevelOctopus;
+    public float currentSpeedGameLevelShark;
+    public float currentSpeedGameLevelOctopus;
 
     void Start() {
         sharkAliveTime = 20.0F;
         octopusAliveTime = 10.0F;
+        nextOctopusSpawn = Random.Range(1, 5);
+        spawnOctopusInterval = Random.Range(7, 15);
+
         itemSpawner = GameObject.Find("ItemSpawner").GetComponent<ItemSpawner>();
         levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+
         currentSpeedGameLevelShark = 1.8F; // initial speed for sharks
         currentSpeedGameLevelOctopus = 2.3F; // initial speed for octopus
     }
@@ -38,6 +42,7 @@ public class EnemySpawner : MonoBehaviour {
     void Update() {
         currentSpeedGameLevelShark = 1.8F + (float)levelManager.GetLevel() * levelManager.GetSpeedLevelRate();
         currentSpeedGameLevelOctopus = 2.3F + (float)levelManager.GetLevel() * levelManager.GetSpeedLevelRate();
+        spawnOctopusInterval = Random.Range(7, 15);
         HandleSharkEnemy();
         HandleOctopusEnemy();
     }
@@ -61,7 +66,6 @@ public class EnemySpawner : MonoBehaviour {
             }
             GameObject shark = Instantiate(SharkPrefab, spawnedPosition, Quaternion.LookRotation(spriteDirection)) as GameObject;
             shark.transform.localScale = new Vector3(randomSize, randomSize, randomSize);
-            shark.GetComponent<Shark>().SetSpeed(currentSpeedGameLevelShark);
             itemSpawner.enemies.Add(shark);
             Destroy(shark, sharkAliveTime);
         }
@@ -84,7 +88,7 @@ public class EnemySpawner : MonoBehaviour {
                 spriteDirection = Vector3.back;
             }
             GameObject octopus = Instantiate(OctopusPrefab, spawnedPosition, Quaternion.LookRotation(spriteDirection)) as GameObject;
-            octopus.GetComponent<Octopus>().SetSpeed(currentSpeedGameLevelOctopus);
+            octopus.GetComponent<Enemy>().SetSpeed(currentSpeedGameLevelOctopus);
             itemSpawner.enemies.Add(octopus);
             Destroy(octopus, octopusAliveTime);
         }
