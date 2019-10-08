@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour {
     Rigidbody2D rigidBody2D;
     Transform spriteChild;
     LifeGenerator lifeGenerator;
+    Boat boat;
 
     void Start() {
         /*
@@ -37,6 +38,7 @@ public class PlayerController : MonoBehaviour {
         rigidBody2D = GetComponent<Rigidbody2D>();
         spriteChild = transform.Find("PlayerSprite");
         lifeGenerator = GameObject.Find("LifeGenerator").GetComponent<LifeGenerator>();
+        boat = GameObject.Find("Boat").GetComponent<Boat>();
 
         // Audio
         AudioSource[] audioSources = GetComponents<AudioSource>();
@@ -71,6 +73,8 @@ public class PlayerController : MonoBehaviour {
                 //hurtSound.Play();
             }
             else if (lifeGenerator.lives.Count == 1) {
+                if (boat.items.Count != 0)
+                    Destroy(boat.items[boat.items.Count - 1]); // If any item in player inventory, destroy
                 lifeGenerator.RemoveLife();
                 transform.position = respawnPosition;
                 lifeGenerator.Generate();

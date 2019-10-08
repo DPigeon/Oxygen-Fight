@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour {
     [SerializeField]
-    GameObject SharkPrefab;
+    GameObject SharkPrefab = null;
 
     [SerializeField]
-    GameObject OctopusPrefab;
+    GameObject OctopusPrefab = null;
 
     ItemSpawner itemSpawner;
     LevelManager levelManager;

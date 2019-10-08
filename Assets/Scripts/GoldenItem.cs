@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GoldenItem : MonoBehaviour {
+    [SerializeField]
+    GameObject SmallGoldenBar = null;
+    [SerializeField]
+    GameObject MediumGoldenBar = null;
+    [SerializeField]
+    GameObject GoldenBag = null;
+
     PlayerController player;
     Boat boat;
 
@@ -25,26 +32,31 @@ public class GoldenItem : MonoBehaviour {
      */
     void OnTriggerEnter2D(Collider2D collider) {
         if (collider.gameObject.name == "Player" && boat.itemsCollected.Count == 0) {
+            Vector3 rotation = new Vector3(0F, 0F, -90.5F);
             if (gameObject.name == "Small Golden Bar(Clone)") {
                 // Display bar on top
-                gameObject.transform.position = collectedItemPosition;
-    
-                boat.AddItem(scoreSmallBar, gameObject);
+                //gameObject.transform.position = collectedItemPosition;
+                GameObject inventorySmallBar = Instantiate(SmallGoldenBar, collectedItemPosition, Quaternion.Euler(rotation)) as GameObject;
+
+                boat.AddItem(scoreSmallBar, inventorySmallBar);
                 player.DecreaseSpeed(speedDecreaseSmallBar);
+                Destroy(gameObject);
             }
             if (gameObject.name == "Medium Golden Bar(Clone)") {
                 // Display bar on top
-                gameObject.transform.position = collectedItemPosition;
+                GameObject inventoryMediumBar = Instantiate(MediumGoldenBar, collectedItemPosition, Quaternion.Euler(rotation)) as GameObject;
 
-                boat.AddItem(scoreMediumBar, gameObject);
+                boat.AddItem(scoreMediumBar, inventoryMediumBar);
                 player.DecreaseSpeed(speedDecreaseMediumBar);
+                Destroy(gameObject);
             }
             if (gameObject.name == "Golden Bag(Clone)") {
                 // Display bar on top
-                gameObject.transform.position = collectedItemPosition;
+                GameObject inventoryGoldenBag = Instantiate(GoldenBag, collectedItemPosition, Quaternion.identity) as GameObject;
 
-                boat.AddItem(scoreBag, gameObject);
+                boat.AddItem(scoreBag, inventoryGoldenBag);
                 player.DecreaseSpeed(speedDecreaseBag);
+                Destroy(gameObject);
             }
         }
     }

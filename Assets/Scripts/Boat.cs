@@ -8,7 +8,7 @@ public class Boat : MonoBehaviour {
     ScoreManager scoreManager;
 
     public List<int> itemsCollected = new List<int>(); // To keep track of the elements picked (1, 2 or 10)
-    public List<GameObject> items = new List<GameObject>(); // Keep track of the GoldenItem ID
+    public List<GameObject> items = new List<GameObject>(); // Keep track of the GoldenItem ID in inventory
     int scoreSmallBar = 1;
     int scoreMediumBar = 2;
     int scoreBag = 10;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LifeGenerator : MonoBehaviour {
     [SerializeField]
-    GameObject Life;
+    GameObject Life = null;
 
     public List<GameObject> lives = new List<GameObject>();
 

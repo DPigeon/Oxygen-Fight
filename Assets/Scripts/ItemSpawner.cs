@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class ItemSpawner : MonoBehaviour {
     [SerializeField]
-    GameObject SmallGoldenBar;
+    GameObject SmallGoldenBar = null;
     [SerializeField]
-    GameObject MediumGoldenBar;
+    GameObject MediumGoldenBar = null;
     [SerializeField]
-    GameObject GoldenBag;
+    GameObject GoldenBag = null;
 
     Boat boat;
     Vector2 spawnedPosition;
@@ -30,6 +30,7 @@ public class ItemSpawner : MonoBehaviour {
     void Update() {
         if (Time.time > nextSpawn) {
             nextSpawn = Time.time + spawnRate;
+            spawnRate = Random.Range(2, 6);
             randomX = Random.Range(-screenX, screenX);
             spawnedPosition = new Vector2(randomX, transform.position.y);
             float randomItem = Random.Range(-1, 3);
