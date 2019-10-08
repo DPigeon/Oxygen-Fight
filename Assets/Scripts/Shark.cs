@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Shark : Enemy {
-
     public override void Start() {
+        base.Start();
         limit = 7.0F;
-        speed = Random.Range(1.0F, 5.0F);
+        speed = 1.8F;
         spawnedPositionY = transform.position.y;
     }
 
@@ -20,11 +20,19 @@ public class Shark : Enemy {
         }
     }
 
+    public override float GetSpeed() {
+        return speed;
+    }
+
     public override void ChangeSpeed(float number) {
         base.ChangeSpeed(number);
     }
 
-    public override void ResetSpeed() {
-        speed = Random.Range(1.0F, 5.0F);
+    public override void IncrementSpeed(float speed) {
+        base.IncrementSpeed(speed);
+    }
+
+    public override void OnDestroy() {
+        base.OnDestroy();
     }
 }

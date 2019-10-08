@@ -10,6 +10,7 @@ public class EnemySpawner : MonoBehaviour {
     GameObject OctopusPrefab;
 
     ItemSpawner itemSpawner;
+    LevelManager levelManager;
     float leftScreenX = -7.0F;
     float leftScreenY1 = 1.40F;
     float leftScreenY2 = -4.15F;
@@ -20,15 +21,21 @@ public class EnemySpawner : MonoBehaviour {
     float spawnOctopusInterval = 22.0F;
     float sharkAliveTime;
     float octopusAliveTime;
-    //public List<GameObject> enemies = new List<GameObject>();
+    float currentSpeedGameLevelShark;
+    float currentSpeedGameLevelOctopus;
 
     void Start() {
-        sharkAliveTime = spawnSharkInterval - 10.0F;
-        octopusAliveTime = spawnOctopusInterval - 5.0F;
+        sharkAliveTime = 20.0F;
+        octopusAliveTime = 10.0F;
         itemSpawner = GameObject.Find("ItemSpawner").GetComponent<ItemSpawner>();
+        levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+        currentSpeedGameLevelShark = 1.8F; // initial speed for sharks
+        currentSpeedGameLevelOctopus = 2.3F; // initial speed for octopus
     }
 
     void Update() {
+        currentSpeedGameLevelShark = 1.8F + (float)levelManager.GetLevel() * levelManager.GetSpeedLevelRate();
+        currentSpeedGameLevelOctopus = 2.3F + (float)levelManager.GetLevel() * levelManager.GetSpeedLevelRate();
         HandleSharkEnemy();
         HandleOctopusEnemy();
     }
@@ -52,8 +59,9 @@ public class EnemySpawner : MonoBehaviour {
             }
             GameObject shark = Instantiate(SharkPrefab, spawnedPosition, Quaternion.LookRotation(spriteDirection)) as GameObject;
             shark.transform.localScale = new Vector3(randomSize, randomSize, randomSize);
+            shark.GetComponent<Enemy>().speed = currentSpeedGameLevelShark;
             itemSpawner.enemies.Add(shark);
-            //RemoveEnemy(shark);
+            Destroy(shark, sharkAliveTime);
         }
     }
 
@@ -74,15 +82,15 @@ public class EnemySpawner : MonoBehaviour {
                 spriteDirection = Vector3.back;
             }
             GameObject octopus = Instantiate(OctopusPrefab, spawnedPosition, Quaternion.LookRotation(spriteDirection)) as GameObject;
+            octopus.GetComponent<Enemy>().speed = currentSpeedGameLevelOctopus;
             itemSpawner.enemies.Add(octopus);
-            //RemoveEnemy(octopus);
+            Destroy(octopus, octopusAliveTime);
         }
     }
 
     public void RemoveEnemy(GameObject enemy) {
         int index = itemSpawner.enemies.IndexOf(enemy);
-        Destroy(itemSpawner.enemies[index], octopusAliveTime);
-        //itemSpawner.enemies.RemoveAt(index);
+        itemSpawner.enemies.RemoveAt(index);
     }
 
     public void DeleteAll() {

@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Octopus : Enemy {
     public override void Start() {
+        base.Start();
         limit = 5.8F;
-        speed = 2.5F;
+        speed = 2.3F;
     }
 
     public override void Update() {
@@ -20,11 +21,19 @@ public class Octopus : Enemy {
         }
     }
 
+    public override float GetSpeed() {
+        return speed;
+    }
+
     public override void ChangeSpeed(float number) {
         base.ChangeSpeed(number);
     }
 
-    public override void ResetSpeed() {
-        speed = 2.5F;
+    public override void IncrementSpeed(float speed) {
+        base.IncrementSpeed(speed);
+    }
+
+    public override void OnDestroy() {
+        base.OnDestroy();
     }
 }
