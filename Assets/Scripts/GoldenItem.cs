@@ -9,11 +9,14 @@ public class GoldenItem : MonoBehaviour {
     GameObject MediumGoldenBar = null;
     [SerializeField]
     GameObject GoldenBag = null;
+    [SerializeField]
+    GameObject NitroTank = null;
 
     PlayerController player;
     Boat boat;
 
     Vector3 collectedItemPosition = new Vector3(3.83F, 4.57F, 0.0F);
+    Vector2 nitroCollectedPosition = new Vector3(3.00F, 4.57F, 0.0F);
     float speedDecreaseSmallBar = 0.4F;
     float speedDecreaseMediumBar = 0.5F;
     float speedDecreaseBag = 0.8F;
@@ -58,6 +61,12 @@ public class GoldenItem : MonoBehaviour {
                 player.DecreaseSpeed(speedDecreaseBag);
                 Destroy(gameObject);
             }
+        }
+        if (gameObject.name == "Nitro Tank(Clone)" && player.nitroTankInventory.Count == 0) {
+            player.nitroActive = true;
+            GameObject nitroTank = Instantiate(NitroTank, nitroCollectedPosition, Quaternion.identity) as GameObject;
+            player.nitroTankInventory.Add(nitroTank);
+            Destroy(gameObject);
         }
     }
 }

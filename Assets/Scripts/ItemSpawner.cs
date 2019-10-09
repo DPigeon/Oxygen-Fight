@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class ItemSpawner : MonoBehaviour {
     [SerializeField]
-    GameObject SmallGoldenBar = null;
+    GameObject SmallGoldenBarPrefab = null;
     [SerializeField]
-    GameObject MediumGoldenBar = null;
+    GameObject MediumGoldenBarPrefab = null;
     [SerializeField]
-    GameObject GoldenBag = null;
+    GameObject GoldenBagPrefab = null;
+    [SerializeField]
+    GameObject NitroTankPrefab = null;
+    [SerializeField]
+    bool variantSpecial;
 
     Boat boat;
     Vector2 spawnedPosition;
@@ -17,17 +21,22 @@ public class ItemSpawner : MonoBehaviour {
     float screenX = 6.0F;
     float spawnRate = 2F;
     float nextSpawn = 0.0F;
+    float nextNitroSpawn = 0.0F;
+    float nitroSpawnRate;
     float randomItem; // Either 0 (small bar), 1 (medium bar) or 2 (bag)
     float aliveSmallBarTime = 9.3F;
     float aliveMediumBarTime = 7.7f;
     float aliveBagTime = 4.5f;
+    float aliveNitroTankTime = 4.0f;
     public List<GameObject> enemies = new List<GameObject>(); // Enemies stored here
 
     void Start() {
         boat = GameObject.Find("Boat").GetComponent<Boat>();
+        nitroSpawnRate = Random.Range(1, 4);
     }
 
     void Update() {
+        nitroSpawnRate = Random.Range(1, 4);
         if (Time.time > nextSpawn) {
             nextSpawn = Time.time + spawnRate;
             spawnRate = Random.Range(2, 6);
@@ -37,21 +46,31 @@ public class ItemSpawner : MonoBehaviour {
 
             if (randomItem == 0) { 
                 rotation = new Vector3(0F, 0F, -90.5F);
-                GameObject smallBar = Instantiate(SmallGoldenBar, spawnedPosition, Quaternion.Euler(rotation)) as GameObject;
+                GameObject smallBar = Instantiate(SmallGoldenBarPrefab, spawnedPosition, Quaternion.Euler(rotation)) as GameObject;
                 Destroy(smallBar, aliveSmallBarTime); // Destroy within a delay
             }
             else if (randomItem == 1) {
                 rotation = new Vector3(0F, 0F, -90.5F);
-                GameObject mediumBar = Instantiate(MediumGoldenBar, spawnedPosition, Quaternion.Euler(rotation)) as GameObject;
+                GameObject mediumBar = Instantiate(MediumGoldenBarPrefab, spawnedPosition, Quaternion.Euler(rotation)) as GameObject;
                 Destroy(mediumBar, aliveMediumBarTime);
             }
             else if (randomItem == 2) {
                 spawnedPosition = new Vector2(randomX, transform.position.y + 0.15F);
-                GameObject bag = Instantiate(GoldenBag, spawnedPosition, Quaternion.identity) as GameObject;
+                GameObject bag = Instantiate(GoldenBagPrefab, spawnedPosition, Quaternion.identity) as GameObject;
                 Destroy(bag, aliveBagTime);
             }
-            // Don't destroy if in inventory (DEFECT: once the destroy timer finishes, the gameObject destroys in inventory)
-            
+
+            /* Variant Special Version */
+            if (variantSpecial) {
+                if (Time.time > nextNitroSpawn) {
+                    nextNitroSpawn = Time.time + nitroSpawnRate;
+                    float x = Random.Range(-screenX, screenX);
+                    float y = Random.Range(-4.2F, 1.25F);
+                    Vector2 nitroSpawn = new Vector2(x, y);
+                    GameObject nitroTank = Instantiate(NitroTankPrefab, nitroSpawn, Quaternion.identity) as GameObject;
+                    Destroy(nitroTank, aliveNitroTankTime);
+                }
+            }
         }
     }
 }

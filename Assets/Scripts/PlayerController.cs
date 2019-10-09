@@ -19,8 +19,11 @@ public class PlayerController : MonoBehaviour {
     bool isSwimmingFast;
     bool isHurt;
 
-    bool dead;
+    public bool nitroActive;
+    float nitroTimer;
+    float nitroDuration = 3.0F; // 3 seconds
 
+    bool dead;
     float deadTimer;
     float deadDuration = 2.0F;
 
@@ -29,6 +32,8 @@ public class PlayerController : MonoBehaviour {
     float limit = 6.5F; // Screen limit
     Vector2 faceDirection;
     Vector3 respawnPosition = new Vector3(0, 1.8F, 0);
+
+    public List<GameObject> nitroTankInventory = new List<GameObject>();
 
     AudioSource hurtSound;
     AudioSource dieSound;
@@ -73,7 +78,6 @@ public class PlayerController : MonoBehaviour {
 
         if (dead) {
             deadTimer += Time.deltaTime;
-            Debug.Log(Time.deltaTime);
             if (deadTimer > deadDuration) {
                 dead = false;
                 deadTimer = 0.0f;
@@ -82,11 +86,25 @@ public class PlayerController : MonoBehaviour {
                 lifeGenerator.Generate();
             }
         }
+
+        if (nitroActive && Input.GetButton("Boost")) {
+            nitroTimer += Time.deltaTime;
+            if (nitroTimer < nitroDuration) {
+                if (nitroTankInventory.Count != 0)
+                    Destroy(nitroTankInventory[0]);
+                nitroTankInventory.Clear();
+                // invicible power
+                IncreaseSpeed(1.0F);
+            } else if (nitroTimer >= nitroDuration) {
+                nitroActive = false;
+                nitroTimer = 0.0f;
+                ResetSpeed();
+            }
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
         if (collider.gameObject.name == "Shark(Clone)" || collider.gameObject.name == "Octopus(Clone)") {
-            // Create some animation of hurting here & sound later
             if (lifeGenerator.lives.Count == 2) {
                 lifeGenerator.RemoveLife();
                 isHurt = true;
@@ -97,9 +115,7 @@ public class PlayerController : MonoBehaviour {
                     Destroy(boat.items[boat.items.Count - 1]); // If any item in player inventory, destroy
                 lifeGenerator.RemoveLife();
                 Die();
-                //lifeGenerator.Generate();
                 //dieSound.Play();
-                // Make player drawn animation here later
             }
         }
     }
@@ -171,6 +187,11 @@ public class PlayerController : MonoBehaviour {
         faceDirection = direction;
         Quaternion rotation3D = direction == Vector2.right ? Quaternion.LookRotation(Vector3.forward) : Quaternion.LookRotation(Vector3.back);
         spriteChild.rotation = rotation3D;
+    }
+
+    public void IncreaseSpeed(float number) {
+        swimSpeed = swimSpeed + number;
+        swimFastSpeed = swimFastSpeed + number;
     }
 
     public void DecreaseSpeed(float number) {
