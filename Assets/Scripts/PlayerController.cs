@@ -7,6 +7,9 @@ public class PlayerController : MonoBehaviour {
      * Initializing all our variables
      */
     [SerializeField]
+    GameObject DieMorph = null;
+
+    [SerializeField]
     float swimSpeed;
 
     [SerializeField]
@@ -15,7 +18,13 @@ public class PlayerController : MonoBehaviour {
     bool isSwimming;
     bool isSwimmingFast;
     bool isHurt;
-    float hurtDuration = 1.0f;
+
+    bool dead;
+
+    float deadTimer;
+    float deadDuration = 2.0F;
+
+    float hurtDuration = 1.5f;
     float hurtTimer;
     float limit = 6.5F; // Screen limit
     Vector2 faceDirection;
@@ -56,10 +65,21 @@ public class PlayerController : MonoBehaviour {
 
         if (isHurt) {
             hurtTimer += Time.deltaTime;
-            if (hurtTimer >= hurtDuration)
-            {
+            if (hurtTimer >= hurtDuration) {
                 isHurt = false;
                 hurtTimer = 0.0f;
+            }
+        }
+
+        if (dead) {
+            deadTimer += Time.deltaTime;
+            Debug.Log(Time.deltaTime);
+            if (deadTimer > deadDuration) {
+                dead = false;
+                deadTimer = 0.0f;
+                transform.localScale = new Vector3(1.646864F, 1.693038F, 1.2313F); // Respawn
+                transform.position = respawnPosition;
+                lifeGenerator.Generate();
             }
         }
     }
@@ -76,12 +96,20 @@ public class PlayerController : MonoBehaviour {
                 if (boat.items.Count != 0)
                     Destroy(boat.items[boat.items.Count - 1]); // If any item in player inventory, destroy
                 lifeGenerator.RemoveLife();
-                transform.position = respawnPosition;
-                lifeGenerator.Generate();
+                Die();
+                //lifeGenerator.Generate();
                 //dieSound.Play();
                 // Make player drawn animation here later
             }
         }
+    }
+
+    private void Die() {
+        dead = true;
+        transform.localScale = new Vector3(0, 0, 0); // Hide player (deleted and dead)
+        GameObject morph = Instantiate(DieMorph, transform.position, Quaternion.identity) as GameObject;
+        Destroy(morph, deadDuration);
+        // After 2 seconds, load main menu here later
     }
 
     private void ControlCharacter() {
