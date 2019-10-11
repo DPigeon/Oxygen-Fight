@@ -7,7 +7,10 @@ public class PlayerController : MonoBehaviour {
      * Initializing all our variables
      */
     [SerializeField]
-    GameObject DieMorph = null;
+    GameObject DieMorphPrefab = null;
+
+    [SerializeField]
+    GameObject NitroParticlesPrefab = null;
 
     [SerializeField]
     float swimSpeed;
@@ -18,6 +21,10 @@ public class PlayerController : MonoBehaviour {
     bool isSwimming;
     bool isSwimmingFast;
     bool isHurt;
+
+    bool upwardMotion;
+    float upwardMotionTimer;
+    float upwardMotionDuration = 1.0F; // Delay in the upward motion of the player
 
     public bool nitroActive;
     float nitroTimer;
@@ -43,6 +50,7 @@ public class PlayerController : MonoBehaviour {
     Transform spriteChild;
     LifeGenerator lifeGenerator;
     Boat boat;
+    GameObject particles;
 
     void Start() {
         /*
@@ -53,6 +61,7 @@ public class PlayerController : MonoBehaviour {
         spriteChild = transform.Find("PlayerSprite");
         lifeGenerator = GameObject.Find("LifeGenerator").GetComponent<LifeGenerator>();
         boat = GameObject.Find("Boat").GetComponent<Boat>();
+        particles = null;
 
         // Audio
         AudioSource[] audioSources = GetComponents<AudioSource>();
@@ -68,6 +77,31 @@ public class PlayerController : MonoBehaviour {
         animator.SetBool("isSwimmingFast", isSwimmingFast);
         animator.SetBool("isHurt", isHurt);
 
+        HandleTimers();
+    }
+
+    void OnTriggerEnter2D(Collider2D collider) {
+        if (collider.gameObject.name == "Shark(Clone)" || collider.gameObject.name == "Octopus(Clone)") {
+            if (lifeGenerator.lives.Count == 2) {
+                lifeGenerator.RemoveLife();
+                isHurt = true;
+                hurtSound.Play();
+            }
+            else if (lifeGenerator.lives.Count == 1) {
+                if (boat.items.Count != 0) { 
+                    Destroy(boat.items[boat.items.Count - 1]); // If any item in player inventory, destroy
+                    boat.items.Clear();
+                    boat.itemsCollected.Clear();
+                    ResetSpeed();
+                }
+                lifeGenerator.RemoveLife();
+                Die();
+                dieSound.Play();
+            }
+        }
+    }
+
+    private void HandleTimers() {
         if (isHurt) {
             hurtTimer += Time.deltaTime;
             if (hurtTimer >= hurtDuration) {
@@ -93,29 +127,16 @@ public class PlayerController : MonoBehaviour {
                 if (nitroTankInventory.Count != 0)
                     Destroy(nitroTankInventory[0]);
                 nitroTankInventory.Clear();
-                // invicible power
+                // invicible power with particle effect
+                particles = Instantiate(NitroParticlesPrefab, transform.position, Quaternion.identity) as GameObject;
+                particles.transform.parent = transform;
                 IncreaseSpeed(1.0F);
-            } else if (nitroTimer >= nitroDuration) {
+            }
+            else if (nitroTimer >= nitroDuration) {
                 nitroActive = false;
                 nitroTimer = 0.0f;
+                Destroy(particles);
                 ResetSpeed();
-            }
-        }
-    }
-
-    void OnTriggerEnter2D(Collider2D collider) {
-        if (collider.gameObject.name == "Shark(Clone)" || collider.gameObject.name == "Octopus(Clone)") {
-            if (lifeGenerator.lives.Count == 2) {
-                lifeGenerator.RemoveLife();
-                isHurt = true;
-                //hurtSound.Play();
-            }
-            else if (lifeGenerator.lives.Count == 1) {
-                if (boat.items.Count != 0)
-                    Destroy(boat.items[boat.items.Count - 1]); // If any item in player inventory, destroy
-                lifeGenerator.RemoveLife();
-                Die();
-                //dieSound.Play();
             }
         }
     }
@@ -123,7 +144,7 @@ public class PlayerController : MonoBehaviour {
     private void Die() {
         dead = true;
         transform.localScale = new Vector3(0, 0, 0); // Hide player (deleted and dead)
-        GameObject morph = Instantiate(DieMorph, transform.position, Quaternion.identity) as GameObject;
+        GameObject morph = Instantiate(DieMorphPrefab, transform.position, Quaternion.identity) as GameObject;
         Destroy(morph, deadDuration);
         // After 2 seconds, load main menu here later
     }
@@ -139,9 +160,14 @@ public class PlayerController : MonoBehaviour {
         isSwimming = false;
 
         if (Input.GetButton("Up")) {
-            transform.Translate(Vector2.up * speed * Time.deltaTime);
-            SpriteDirectionUp(Vector2.up); 
-            isSwimming = true;
+            //upwardMotionTimer += Time.deltaTime;
+                //if (upwardMotionTimer >= upwardMotionDuration) {
+                    //upwardMotion = false;
+                    //upwardMotionTimer = 0.0f;
+                    transform.Translate(Vector2.up * speed * Time.deltaTime);
+                    SpriteDirectionUp(Vector2.up);
+                    isSwimming = true;
+                //}
         }
         if (Input.GetButton("Down")) {
             transform.Translate(-Vector2.up * speed * Time.deltaTime);

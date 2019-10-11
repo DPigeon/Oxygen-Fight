@@ -1416,7 +1416,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8a13ad09608dcb4697e7efa938fb124, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DieMorph: {fileID: 6264410587202633455, guid: c1ea40e58a2cbfd49a06363998fc5574,
+  DieMorphPrefab: {fileID: 6264410587202633455, guid: c1ea40e58a2cbfd49a06363998fc5574,
+    type: 3}
+  NitroParticlesPrefab: {fileID: 2992945140590669510, guid: e18826115051c4646a6a065d4d4a02df,
     type: 3}
   swimSpeed: 0.9
   swimFastSpeed: 1.5

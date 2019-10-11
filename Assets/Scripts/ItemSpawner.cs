@@ -32,7 +32,8 @@ public class ItemSpawner : MonoBehaviour {
 
     void Start() {
         boat = GameObject.Find("Boat").GetComponent<Boat>();
-        variantSpecial = ModeSelection.mode;
+        variantSpecial = true;
+        //variantSpecial = ModeSelection.mode;
         if (variantSpecial)
             nitroSpawnRate = Random.Range(1, 4);
     }
