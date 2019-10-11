@@ -11,8 +11,8 @@ public class ItemSpawner : MonoBehaviour {
     GameObject GoldenBagPrefab = null;
     [SerializeField]
     GameObject NitroTankPrefab = null;
-    [SerializeField]
-    bool variantSpecial;
+
+    public bool variantSpecial;
 
     Boat boat;
     Vector2 spawnedPosition;
@@ -32,7 +32,9 @@ public class ItemSpawner : MonoBehaviour {
 
     void Start() {
         boat = GameObject.Find("Boat").GetComponent<Boat>();
-        nitroSpawnRate = Random.Range(1, 4);
+        variantSpecial = ModeSelection.mode;
+        if (variantSpecial)
+            nitroSpawnRate = Random.Range(1, 4);
     }
 
     void Update() {
