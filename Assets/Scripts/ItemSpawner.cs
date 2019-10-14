@@ -32,14 +32,13 @@ public class ItemSpawner : MonoBehaviour {
 
     void Start() {
         boat = GameObject.Find("Boat").GetComponent<Boat>();
-        variantSpecial = true;
-        //variantSpecial = ModeSelection.mode;
-        if (variantSpecial)
-            nitroSpawnRate = Random.Range(1, 4);
+        //variantSpecial = true;
+        variantSpecial = ModeSelection.mode;
+        VariantVariationSpawn();
     }
 
     void Update() {
-        nitroSpawnRate = Random.Range(1, 4);
+        VariantVariationSpawn();
         if (Time.time > nextSpawn) {
             nextSpawn = Time.time + spawnRate;
             spawnRate = Random.Range(2, 6);
@@ -76,4 +75,10 @@ public class ItemSpawner : MonoBehaviour {
             }
         }
     }
+
+    private void VariantVariationSpawn() {
+        if (variantSpecial)
+            nitroSpawnRate = Random.Range(10, 30); // Spawns in between 10 to 30 seconds
+    }
+
 }

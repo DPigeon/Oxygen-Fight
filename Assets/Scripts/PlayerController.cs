@@ -165,6 +165,8 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void Die() {
+        if (nitroActivateTimer)
+            Destroy(particles);
         dieSound.Play();
         dead = true;
         transform.localScale = new Vector3(0, 0, 0); // Hide player (deleted and dead)
