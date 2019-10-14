@@ -114,6 +114,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3d65d5b0c0a57545b0f0134a0a89119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  limit: 0
+  speed: 0
+  spawnedPositionY: 0
+  enemySpawner: {fileID: 0}
 --- !u!58 &58397583559403408
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -127,9 +131,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.11828176, y: -0.019896494}
   serializedVersion: 2
-  m_Radius: 2.02
+  m_Radius: 1.5077286
 --- !u!50 &50707029039185498
 Rigidbody2D:
   serializedVersion: 4

@@ -13,7 +13,7 @@ public class EnemySpawner : MonoBehaviour {
     LevelManager levelManager;
 
     float leftScreenX = -7.0F;
-    float leftScreenY1 = 1.40F;
+    float leftScreenY1 = 0.40F;
     float leftScreenY2 = -4.15F;
     float rightScreenX = 7.0F;
 

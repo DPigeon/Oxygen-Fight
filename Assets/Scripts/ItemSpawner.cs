@@ -78,7 +78,7 @@ public class ItemSpawner : MonoBehaviour {
 
     private void VariantVariationSpawn() {
         if (variantSpecial)
-            nitroSpawnRate = Random.Range(10, 30); // Spawns in between 10 to 30 seconds
+            nitroSpawnRate = Random.Range(3, 5); // Spawns in between 10 to 30 seconds
     }
 
 }

@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour {
 
     AudioSource hurtSound;
     AudioSource dieSound;
+    AudioSource nitroSound;
 
     Animator animator;
     Rigidbody2D rigidBody2D;
@@ -69,6 +70,7 @@ public class PlayerController : MonoBehaviour {
         AudioSource[] audioSources = GetComponents<AudioSource>();
         hurtSound = audioSources[0];
         dieSound = audioSources[1];
+        nitroSound = audioSources[2];
     }
 
     void Update() {
@@ -146,6 +148,7 @@ public class PlayerController : MonoBehaviour {
                 Destroy(nitroTankInventory[0]);
             nitroTankInventory.Clear();
             // Invicible power with particle effect
+            nitroSound.Play();
             particles = Instantiate(NitroParticlesPrefab, transform.position, Quaternion.identity) as GameObject;
             particles.transform.parent = transform;
             IncreaseSpeed(3.0F);
@@ -181,7 +184,7 @@ public class PlayerController : MonoBehaviour {
 
         /* Swimming Fast */
         if (Input.GetButtonDown("Run")) isSwimmingFast = true;
-        if (Input.GetButtonUp("Run")) isSwimmingFast = false;
+        if (Input.GetButtonUp("Run")) isSwimmingFast = true;
 
         isSwimming = false;
 
