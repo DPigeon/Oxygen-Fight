@@ -61,12 +61,12 @@ public class GoldenItem : MonoBehaviour {
                 player.DecreaseSpeed(speedDecreaseBag);
                 Destroy(gameObject);
             }
-        }
-        if (gameObject.name == "Nitro Tank(Clone)" && player.nitroTankInventory.Count == 0) {
-            player.nitroActive = true;
-            GameObject nitroTank = Instantiate(NitroTank, nitroCollectedPosition, Quaternion.identity) as GameObject;
-            player.nitroTankInventory.Add(nitroTank);
-            Destroy(gameObject);
+            if (gameObject.name == "Nitro Tank(Clone)" && player.nitroTankInventory.Count == 0) {
+                player.nitroActive = true;
+                GameObject nitroTank = Instantiate(NitroTank, nitroCollectedPosition, Quaternion.identity) as GameObject;
+                player.nitroTankInventory.Add(nitroTank);
+                Destroy(gameObject);
+            }
         }
     }
 }

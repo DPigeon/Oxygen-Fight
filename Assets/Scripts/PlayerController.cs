@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
     /* 
      * Initializing all our variables
      */
@@ -29,6 +30,7 @@ public class PlayerController : MonoBehaviour {
     public bool nitroActive;
     float nitroTimer;
     float nitroDuration = 3.0F; // 3 seconds
+    bool nitroActivateTimer;
 
     bool dead;
     float deadTimer;
@@ -52,7 +54,8 @@ public class PlayerController : MonoBehaviour {
     Boat boat;
     GameObject particles;
 
-    void Start() {
+    void Start()
+    {
         /*
          * We get the components made in the player's inspector
          */
@@ -69,7 +72,8 @@ public class PlayerController : MonoBehaviour {
         dieSound = audioSources[1];
     }
 
-    void Update() {
+    void Update()
+    {
         ControlCharacter();
         CheckBoundaries();
 
@@ -80,15 +84,20 @@ public class PlayerController : MonoBehaviour {
         HandleTimers();
     }
 
-    void OnTriggerEnter2D(Collider2D collider) {
-        if (collider.gameObject.name == "Shark(Clone)" || collider.gameObject.name == "Octopus(Clone)") {
-            if (lifeGenerator.lives.Count == 2) {
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.name == "Shark(Clone)" || collider.gameObject.name == "Octopus(Clone)")
+        {
+            if (lifeGenerator.lives.Count == 2)
+            {
                 lifeGenerator.RemoveLife();
                 isHurt = true;
                 hurtSound.Play();
             }
-            else if (lifeGenerator.lives.Count == 1) {
-                if (boat.items.Count != 0) { 
+            else if (lifeGenerator.lives.Count == 1)
+            {
+                if (boat.items.Count != 0)
+                {
                     Destroy(boat.items[boat.items.Count - 1]); // If any item in player inventory, destroy
                     boat.items.Clear();
                     boat.itemsCollected.Clear();
@@ -101,18 +110,23 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    private void HandleTimers() {
-        if (isHurt) {
+    private void HandleTimers()
+    {
+        if (isHurt)
+        {
             hurtTimer += Time.deltaTime;
-            if (hurtTimer >= hurtDuration) {
+            if (hurtTimer >= hurtDuration)
+            {
                 isHurt = false;
                 hurtTimer = 0.0f;
             }
         }
 
-        if (dead) {
+        if (dead)
+        {
             deadTimer += Time.deltaTime;
-            if (deadTimer > deadDuration) {
+            if (deadTimer > deadDuration)
+            {
                 dead = false;
                 deadTimer = 0.0f;
                 transform.localScale = new Vector3(1.646864F, 1.693038F, 1.2313F); // Respawn
@@ -122,26 +136,28 @@ public class PlayerController : MonoBehaviour {
         }
 
         if (nitroActive && Input.GetButton("Boost")) {
+            nitroActive = false;
+            nitroActivateTimer = true;
+            if (nitroTankInventory.Count != 0)
+                Destroy(nitroTankInventory[0]);
+            nitroTankInventory.Clear();
+            // invicible power with particle effect
+            particles = Instantiate(NitroParticlesPrefab, transform.position, Quaternion.identity) as GameObject;
+            particles.transform.parent = transform;
+            IncreaseSpeed(3.0F);
+        }
+        if (nitroActivateTimer)
             nitroTimer += Time.deltaTime;
-            if (nitroTimer < nitroDuration) {
-                if (nitroTankInventory.Count != 0)
-                    Destroy(nitroTankInventory[0]);
-                nitroTankInventory.Clear();
-                // invicible power with particle effect
-                particles = Instantiate(NitroParticlesPrefab, transform.position, Quaternion.identity) as GameObject;
-                particles.transform.parent = transform;
-                IncreaseSpeed(1.0F);
-            }
-            else if (nitroTimer >= nitroDuration) {
-                nitroActive = false;
-                nitroTimer = 0.0f;
-                Destroy(particles);
-                ResetSpeed();
-            }
+        if (nitroTimer >= nitroDuration) {
+            nitroActivateTimer = false;
+            nitroTimer = 0.0f;
+            Destroy(particles);
+            ResetSpeed();
         }
     }
 
-    private void Die() {
+    private void Die()
+    {
         dead = true;
         transform.localScale = new Vector3(0, 0, 0); // Hide player (deleted and dead)
         GameObject morph = Instantiate(DieMorphPrefab, transform.position, Quaternion.identity) as GameObject;
@@ -149,7 +165,8 @@ public class PlayerController : MonoBehaviour {
         // After 2 seconds, load main menu here later
     }
 
-    private void ControlCharacter() {
+    private void ControlCharacter()
+    {
         /* Speed Character */
         float speed = isSwimmingFast ? swimFastSpeed : swimSpeed;
 
@@ -159,27 +176,31 @@ public class PlayerController : MonoBehaviour {
 
         isSwimming = false;
 
-        if (Input.GetButton("Up")) {
+        if (Input.GetButton("Up"))
+        {
             //upwardMotionTimer += Time.deltaTime;
-                //if (upwardMotionTimer >= upwardMotionDuration) {
-                    //upwardMotion = false;
-                    //upwardMotionTimer = 0.0f;
-                    transform.Translate(Vector2.up * speed * Time.deltaTime);
-                    SpriteDirectionUp(Vector2.up);
-                    isSwimming = true;
-                //}
+            //if (upwardMotionTimer >= upwardMotionDuration) {
+            //upwardMotion = false;
+            //upwardMotionTimer = 0.0f;
+            transform.Translate(Vector2.up * speed * Time.deltaTime);
+            SpriteDirectionUp(Vector2.up);
+            isSwimming = true;
+            //}
         }
-        if (Input.GetButton("Down")) {
+        if (Input.GetButton("Down"))
+        {
             transform.Translate(-Vector2.up * speed * Time.deltaTime);
-            SpriteDirectionUp(-Vector2.up); 
+            SpriteDirectionUp(-Vector2.up);
             isSwimming = true;
         }
-        if (Input.GetButton("Left")) {
+        if (Input.GetButton("Left"))
+        {
             transform.Translate(-Vector2.right * speed * Time.deltaTime);
             SpriteDirectionRight(-Vector2.right);
             isSwimming = true;
         }
-        if (Input.GetButton("Right")) {
+        if (Input.GetButton("Right"))
+        {
             transform.Translate(Vector2.right * speed * Time.deltaTime);
             SpriteDirectionRight(Vector2.right);
             isSwimming = true;
@@ -189,7 +210,8 @@ public class PlayerController : MonoBehaviour {
         if (!isSwimming) SpriteDirectionRight(Vector2.right);
     }
 
-    private void CheckBoundaries() {
+    private void CheckBoundaries()
+    {
         if (transform.position.x < -limit)
         {
             transform.position = new Vector2(limit, transform.position.y);
@@ -203,29 +225,34 @@ public class PlayerController : MonoBehaviour {
     /* 
      * Sprite Directions (up, down & right, left)
      */
-    private void SpriteDirectionUp(Vector2 direction) {
+    private void SpriteDirectionUp(Vector2 direction)
+    {
         faceDirection = direction;
         Quaternion rotation3D = direction == Vector2.up ? Quaternion.LookRotation(Vector3.back, Vector3.right) : Quaternion.LookRotation(Vector3.back, Vector3.left);
         spriteChild.rotation = rotation3D;
     }
 
-    private void SpriteDirectionRight(Vector2 direction) {
+    private void SpriteDirectionRight(Vector2 direction)
+    {
         faceDirection = direction;
         Quaternion rotation3D = direction == Vector2.right ? Quaternion.LookRotation(Vector3.forward) : Quaternion.LookRotation(Vector3.back);
         spriteChild.rotation = rotation3D;
     }
 
-    public void IncreaseSpeed(float number) {
+    public void IncreaseSpeed(float number)
+    {
         swimSpeed = swimSpeed + number;
         swimFastSpeed = swimFastSpeed + number;
     }
 
-    public void DecreaseSpeed(float number) {
+    public void DecreaseSpeed(float number)
+    {
         swimSpeed = swimSpeed - number;
         swimFastSpeed = swimFastSpeed - number;
     }
 
-    public void ResetSpeed() {
+    public void ResetSpeed()
+    {
         swimSpeed = 0.9F;
         swimFastSpeed = 1.5F;
     }
