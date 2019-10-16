@@ -133,10 +133,11 @@ public class PlayerController : MonoBehaviour {
         if (upwardMotionTimer >= upwardMotionDuration)
             moveForwardAfterTimer = true;
         if (moveForwardAfterTimer) {
-            float speed = isSwimmingFast ? swimFastSpeed : swimSpeed;
+            float speed = swimFastSpeed;
             transform.Translate(Vector2.up * speed * Time.deltaTime);
             SpriteDirectionUp(Vector2.up);
-            isSwimming = true;
+            //isSwimming = true;
+            isSwimmingFast = true;
             upwardMotion = false;
             upwardMotionTimer = 0.0F;
         }
@@ -180,19 +181,22 @@ public class PlayerController : MonoBehaviour {
 
     private void ControlCharacter() {
         /* Speed Character */
-        float speed = isSwimmingFast ? swimFastSpeed : swimSpeed;
+        float speed = swimFastSpeed;
 
         /* Swimming Fast */
         if (Input.GetButtonDown("Run")) isSwimmingFast = true;
-        if (Input.GetButtonUp("Run")) isSwimmingFast = true;
+        if (Input.GetButtonUp("Run")) isSwimmingFast = false;
 
         isSwimming = false;
 
-        if (Input.GetButtonDown("Up")) 
+        if (Input.GetButtonDown("Up")) {
             upwardMotion = true;
+        }
         if (Input.GetButtonUp("Up")) {
             upwardMotion = false;
             moveForwardAfterTimer = false;
+            //isSwimming = false;
+            isSwimmingFast = false;
         }
         if (Input.GetButton("Down")) {
             transform.Translate(-Vector2.up * speed * Time.deltaTime);
