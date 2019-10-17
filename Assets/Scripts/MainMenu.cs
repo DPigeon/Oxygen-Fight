@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour {
 
     public void MenuInteractions(string name) {
-        Application.LoadLevel(name);
+        SceneManager.LoadScene(name);
     }
 
     public void SelectMode(bool mode) {

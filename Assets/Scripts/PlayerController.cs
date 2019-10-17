@@ -122,9 +122,10 @@ public class PlayerController : MonoBehaviour {
             if (deadTimer > deadDuration) {
                 dead = false;
                 deadTimer = 0.0f;
-                transform.localScale = new Vector3(1.646864F, 1.693038F, 1.2313F); // Respawn
+                /*transform.localScale = new Vector3(1.646864F, 1.693038F, 1.2313F); // Respawn
                 transform.position = respawnPosition;
-                lifeGenerator.Generate();
+                lifeGenerator.Generate();*/
+                FindObjectOfType<GameOver>().EndTheGame();
             }
         }
 
