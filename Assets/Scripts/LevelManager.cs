@@ -16,10 +16,14 @@ public class LevelManager : MonoBehaviour {
     bool readyToLevel = false;
     int level;
 
+    AudioSource levelUpSound;
+
     void Start() {
         level = 0;
         levelText = GameObject.Find("LevelText").GetComponent<Text>();
         itemSpawner = GameObject.Find("ItemSpawner").GetComponent<ItemSpawner>();
+        AudioSource[] audioSources = GetComponents<AudioSource>();
+        levelUpSound = audioSources[0];
     }
 
     void Update() {
@@ -56,6 +60,8 @@ public class LevelManager : MonoBehaviour {
     public void LevelUp() {
         readyToLevel = false;
         level++;
+        if (level != 1)
+            levelUpSound.Play();
         //enemySpawner.DeleteAll(); // Delete all enemies at beginning of new level
         // Could add some music or animation UI here
     }

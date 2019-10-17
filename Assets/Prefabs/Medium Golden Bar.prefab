@@ -98,6 +98,8 @@ MonoBehaviour:
   MediumGoldenBar: {fileID: 6488206591034568403}
   GoldenBag: {fileID: 958538770286114164, guid: bfc503d413800624b84b6d83405f6064,
     type: 3}
+  NitroTank: {fileID: 5176837601803368321, guid: a26f8863df3d9724b9d5eb1337ba3119,
+    type: 3}
 --- !u!61 &6488206591034568402
 BoxCollider2D:
   m_ObjectHideFlags: 0

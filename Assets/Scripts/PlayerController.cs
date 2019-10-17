@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour {
 
     bool dead;
     float deadTimer;
-    float deadDuration = 2.0F;
+    float deadDuration = 3.0F;
 
     float hurtDuration = 1.5f;
     float hurtTimer;

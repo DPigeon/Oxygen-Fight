@@ -38,7 +38,6 @@ public class GoldenItem : MonoBehaviour {
             Vector3 rotation = new Vector3(0F, 0F, -90.5F);
             if (gameObject.name == "Small Golden Bar(Clone)") {
                 // Display bar on top
-                //gameObject.transform.position = collectedItemPosition;
                 GameObject inventorySmallBar = Instantiate(SmallGoldenBar, collectedItemPosition, Quaternion.Euler(rotation)) as GameObject;
 
                 boat.AddItem(scoreSmallBar, inventorySmallBar);
