@@ -9,9 +9,11 @@ public class GameOver : MonoBehaviour
     GameObject gameOverUI;
 
     bool gameEnded = false;
-
+    AudioSource gameOverSound;
 
     void Start() {
+        AudioSource[] audioSources = GetComponents<AudioSource>();
+        gameOverSound = audioSources[0];
     }
 
     public void EndTheGame() {
@@ -24,6 +26,7 @@ public class GameOver : MonoBehaviour
     private void ShowInterface() {
         gameOverUI.SetActive(true);
         Time.timeScale = 0.0F; // Freezing the game
+        gameOverSound.Play();
     }
 
     public void LoadNewScene(string name) {

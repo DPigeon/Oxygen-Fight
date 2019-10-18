@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour {
     GameObject NitroParticlesPrefab = null;
 
     ParticleSystem bubbles = null;
+    SpriteRenderer hurtColor;
 
     [SerializeField]
     float swimSpeed;
@@ -63,6 +64,7 @@ public class PlayerController : MonoBehaviour {
         boat = GameObject.Find("Boat").GetComponent<Boat>();
         particles = null;
         bubbles = transform.Find("Bubbles").GetComponentsInChildren<ParticleSystem>()[0];
+        hurtColor = transform.Find("PlayerSprite").GetComponentsInChildren<SpriteRenderer>()[0];
 
         // Audio
         AudioSource[] audioSources = GetComponents<AudioSource>();
@@ -113,6 +115,9 @@ public class PlayerController : MonoBehaviour {
                 isHurt = false;
                 hurtTimer = 0.0f;
             }
+            Color firstColor = new Color(1F, 0F, 0F, 0.7F);
+            Color secondColor = new Color(1F, 1F, 1F, 1F);
+            hurtColor.color = Color.Lerp(firstColor, secondColor, Mathf.PingPong(Time.time * 5.0F, 1.0F));
         }
 
         if (dead) {
