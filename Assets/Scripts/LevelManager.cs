@@ -58,8 +58,10 @@ public class LevelManager : MonoBehaviour {
     public void LevelUp() {
         readyToLevel = false;
         level++;
-        if (level != 1) 
+        if (level != 1) {
             FindObjectOfType<ScoreManager>().IncrementScore(levelUpReward * (level - 1), true); // Reward score
+            FindObjectOfType<LifeGenerator>().GenerateLivesAfterLevelUp();
+        }
         //enemySpawner.DeleteAll(); // Delete all enemies at beginning of new level
         // Could add some music or animation UI here
     }

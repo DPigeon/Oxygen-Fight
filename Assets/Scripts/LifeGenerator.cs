@@ -24,6 +24,13 @@ public class LifeGenerator : MonoBehaviour {
         lives.Add(life2);
     }
 
+    public void GenerateLivesAfterLevelUp() {
+        // We remove twice and add new lives.
+        RemoveLife();
+        RemoveLife();
+        Generate();
+    }
+
     public void RemoveLife() {
         if (lives.Count != 0) {
             Destroy(lives[lives.Count - 1]);
