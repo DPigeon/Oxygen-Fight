@@ -195,7 +195,7 @@ public class PlayerController : MonoBehaviour {
         isSwimming = false;
 
         if (Input.GetButtonDown("Up")) {
-            rigidBody2D.AddForce(Vector3.up * 10, ForceMode2D.Force);
+            rigidBody2D.AddForce(Vector3.up * 15, ForceMode2D.Force);
             //transform.Translate(Vector2.up * speed * Time.deltaTime * 4); // Increasing the speed here for upward motion
             //SpriteDirectionUp(Vector2.up);
             stopUpwardForce = false;
