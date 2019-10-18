@@ -29,19 +29,19 @@ public class Boat : MonoBehaviour {
             bringToBoatSound.Play();
             if (itemsCollected[itemsCollected.Count - 1] == 1) {
                 player.ResetSpeed();
-                scoreManager.IncrementScore(scoreSmallBar);
+                scoreManager.IncrementScore(scoreSmallBar, false);
                 itemsCollected.Clear();
                 Destroy(items[items.Count - 1]);
             }
             else if (itemsCollected[itemsCollected.Count - 1] == 2) {
                 player.ResetSpeed();
-                scoreManager.IncrementScore(scoreMediumBar);
+                scoreManager.IncrementScore(scoreMediumBar, false);
                 itemsCollected.Clear();
                 Destroy(items[items.Count - 1]);
             }
             else if (itemsCollected[itemsCollected.Count - 1] == 10) {
                 player.ResetSpeed();
-                scoreManager.IncrementScore(scoreBag);
+                scoreManager.IncrementScore(scoreBag, false);
                 itemsCollected.Clear();
                 Destroy(items[items.Count - 1]);
             }

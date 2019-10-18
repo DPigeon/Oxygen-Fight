@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     GameObject NitroParticlesPrefab = null;
 
+    ParticleSystem bubbles = null;
+
     [SerializeField]
     float swimSpeed;
 
@@ -21,11 +23,6 @@ public class PlayerController : MonoBehaviour {
     bool isSwimming;
     bool isSwimmingFast;
     bool isHurt;
-
-    bool upwardMotion;
-    bool moveForwardAfterTimer;
-    float upwardMotionTimer;
-    float upwardMotionDuration = 0.5F; // 500ms delay in the upward motion of the player
 
     public bool nitroActive;
     float nitroTimer;
@@ -65,6 +62,7 @@ public class PlayerController : MonoBehaviour {
         lifeGenerator = GameObject.Find("LifeGenerator").GetComponent<LifeGenerator>();
         boat = GameObject.Find("Boat").GetComponent<Boat>();
         particles = null;
+        bubbles = transform.Find("Bubbles").GetComponentsInChildren<ParticleSystem>()[0];
 
         // Audio
         AudioSource[] audioSources = GetComponents<AudioSource>();
@@ -129,20 +127,6 @@ public class PlayerController : MonoBehaviour {
             }
         }
 
-        if (upwardMotion)
-            upwardMotionTimer += Time.deltaTime;
-        if (upwardMotionTimer >= upwardMotionDuration)
-            moveForwardAfterTimer = true;
-        if (moveForwardAfterTimer) {
-            float speed = swimFastSpeed;
-            transform.Translate(Vector2.up * speed * Time.deltaTime);
-            SpriteDirectionUp(Vector2.up);
-            //isSwimming = true;
-            isSwimmingFast = true;
-            upwardMotion = false;
-            upwardMotionTimer = 0.0F;
-        }
-
         if (nitroActive && Input.GetButton("Boost") && !dead) {
             nitroActive = false;
             nitroActivateTimer = true;
@@ -175,6 +159,7 @@ public class PlayerController : MonoBehaviour {
         dieSound.Play();
         dead = true;
         transform.localScale = new Vector3(0, 0, 0); // Hide player (deleted and dead)
+        bubbles.Stop();
         GameObject morph = Instantiate(DieMorphPrefab, transform.position, Quaternion.identity) as GameObject;
         Destroy(morph, deadDuration);
         // After 2 seconds, load main menu here later
@@ -191,13 +176,13 @@ public class PlayerController : MonoBehaviour {
         isSwimming = false;
 
         if (Input.GetButtonDown("Up")) {
-            upwardMotion = true;
+            transform.Translate(Vector2.up * speed * Time.deltaTime * 4); // Increasing the speed here for upward motion
+            //SpriteDirectionUp(Vector2.up);
+            isSwimming = true;
         }
         if (Input.GetButtonUp("Up")) {
-            upwardMotion = false;
-            moveForwardAfterTimer = false;
-            //isSwimming = false;
-            isSwimmingFast = false;
+            transform.Translate(Vector2.up * speed * Time.deltaTime * 4); // Increasing the speed here for upward motion
+            //SpriteDirectionUp(Vector2.up);
         }
         if (Input.GetButton("Down")) {
             transform.Translate(-Vector2.up * speed * Time.deltaTime);
