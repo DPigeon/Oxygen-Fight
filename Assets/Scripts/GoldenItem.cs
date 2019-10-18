@@ -61,7 +61,7 @@ public class GoldenItem : MonoBehaviour {
                 Destroy(gameObject);
             }
             if (gameObject.name == "Nitro Tank(Clone)" && player.nitroTankInventory.Count == 0) {
-                player.nitroActive = true;
+                player.ActivateNitro();
                 GameObject nitroTank = Instantiate(NitroTank, nitroCollectedPosition, Quaternion.identity) as GameObject;
                 player.nitroTankInventory.Add(nitroTank);
                 Destroy(gameObject);

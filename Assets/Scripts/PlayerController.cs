@@ -30,6 +30,10 @@ public class PlayerController : MonoBehaviour {
     float nitroDuration = 3.0F; // 3 seconds
     bool nitroActivateTimer;
 
+    float nextUpwardForce = 0.0F;
+    float upwardForceDuration = 2.0F;
+    bool stopUpwardForce;
+
     bool dead;
     float deadTimer;
     float deadDuration = 3.0F;
@@ -45,6 +49,7 @@ public class PlayerController : MonoBehaviour {
     AudioSource hurtSound;
     AudioSource dieSound;
     AudioSource nitroSound;
+    AudioSource collectNitroSound;
 
     Animator animator;
     Rigidbody2D rigidBody2D;
@@ -71,6 +76,7 @@ public class PlayerController : MonoBehaviour {
         hurtSound = audioSources[0];
         dieSound = audioSources[1];
         nitroSound = audioSources[2];
+        collectNitroSound = audioSources[3];
     }
 
     void Update() {
@@ -132,6 +138,14 @@ public class PlayerController : MonoBehaviour {
             }
         }
 
+        if (stopUpwardForce) {
+            nextUpwardForce += Time.deltaTime;
+            if (nextUpwardForce > upwardForceDuration) {
+                rigidBody2D.velocity = Vector3.zero;
+                nextUpwardForce = 0.0F;
+            }
+        }
+
         if (nitroActive && Input.GetButton("Boost") && !dead) {
             nitroActive = false;
             nitroActivateTimer = true;
@@ -181,13 +195,20 @@ public class PlayerController : MonoBehaviour {
         isSwimming = false;
 
         if (Input.GetButtonDown("Up")) {
-            transform.Translate(Vector2.up * speed * Time.deltaTime * 4); // Increasing the speed here for upward motion
+            rigidBody2D.AddForce(Vector3.up * 10, ForceMode2D.Force);
+            //transform.Translate(Vector2.up * speed * Time.deltaTime * 4); // Increasing the speed here for upward motion
             //SpriteDirectionUp(Vector2.up);
+            stopUpwardForce = false;
             isSwimming = true;
         }
         if (Input.GetButtonUp("Up")) {
-            transform.Translate(Vector2.up * speed * Time.deltaTime * 4); // Increasing the speed here for upward motion
+            //transform.Translate(Vector2.up * speed * Time.deltaTime * 4); // Increasing the speed here for upward motion
             //SpriteDirectionUp(Vector2.up);
+            stopUpwardForce = true;
+        }
+        if ((Input.GetButton("ArrowUp") || Input.GetButton("Up")) && nitroActivateTimer) { // If power boost activated, we want to go upward fast
+            transform.Translate(Vector2.up * speed * Time.deltaTime); // Increasing the speed here for upward motion
+            SpriteDirectionUp(Vector2.up);
         }
         if (Input.GetButton("Down")) {
             transform.Translate(-Vector2.up * speed * Time.deltaTime);
@@ -247,4 +268,10 @@ public class PlayerController : MonoBehaviour {
         swimSpeed = 0.9F;
         swimFastSpeed = 1.5F;
     }
+
+    public void ActivateNitro() {
+        nitroActive = true;
+        collectNitroSound.Play();
+    }
+
 }
