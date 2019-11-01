@@ -8,6 +8,10 @@ public class MainMenu : MonoBehaviour {
     public void MenuInteractions(string name) {
         SceneManager.LoadScene(name);
     }
+	
+	public void QuitGame() {
+		Application.Quit();
+	}
 
     public void SelectMode(bool mode) {
         ModeSelection.mode = mode;
