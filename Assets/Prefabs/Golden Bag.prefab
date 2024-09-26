@@ -90,15 +90,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 958538770286114164}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42a63dc89f140b64d8026049763c6d87, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c4ac4788d0f1a54ebb52927c844b717, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SmallGoldenBar: {fileID: 5982553271109555120, guid: 5326d102d4d191641843561713e53127,
+  SmallGoldenBar: {fileID: 5982553271109555120, guid: 23e67ea1786bc11479f50dfc7a31d963,
     type: 3}
-  MediumGoldenBar: {fileID: 6488206591034568403, guid: 0c238ad9e0e5a3f4aa8f5f37388b6816,
+  MediumGoldenBar: {fileID: 6488206591034568403, guid: 3511b1d007fc87441bcecbca9591b3c5,
     type: 3}
   GoldenBag: {fileID: 958538770286114164}
-  NitroTank: {fileID: 5176837601803368321, guid: a26f8863df3d9724b9d5eb1337ba3119,
+  NitroTank: {fileID: 5176837601803368321, guid: 275652ace6f2ed34398dc83c74412cbf,
     type: 3}
 --- !u!61 &958538770286114165
 BoxCollider2D:

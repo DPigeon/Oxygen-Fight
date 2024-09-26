@@ -6,30 +6,35 @@ using UnityEngine.SceneManagement;
 public class GameOver : MonoBehaviour
 {
     [SerializeField]
-    GameObject gameOverUI;
+    GameObject gameOverUI = null;
 
     bool gameEnded = false;
     AudioSource gameOverSound;
 
-    void Start() {
+    void Start()
+    {
         AudioSource[] audioSources = GetComponents<AudioSource>();
         gameOverSound = audioSources[0];
     }
 
-    public void EndTheGame() {
-        if (!gameEnded) {
+    public void EndTheGame()
+    {
+        if (!gameEnded)
+        {
             gameEnded = true;
             ShowInterface();
         }
     }
 
-    private void ShowInterface() {
+    private void ShowInterface()
+    {
         gameOverUI.SetActive(true);
         Time.timeScale = 0.0F; // Freezing the game
         gameOverSound.Play();
     }
 
-    public void LoadNewScene(string name) {
+    public void LoadNewScene(string name)
+    {
         SceneManager.LoadScene(name);
         Time.timeScale = 1.0F;
     }

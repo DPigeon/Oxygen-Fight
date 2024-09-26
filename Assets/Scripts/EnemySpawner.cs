@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour {
+public class EnemySpawner : MonoBehaviour
+{
     [SerializeField]
     GameObject SharkPrefab = null;
 
@@ -32,7 +33,8 @@ public class EnemySpawner : MonoBehaviour {
     public float currentSpeedGameLevelOctopus;
     public int sharkWaveSize = 3;
 
-    void Start() {
+    void Start()
+    {
         sharkAliveTime = 20.0F;
         nextOctopusSpawn = Random.Range(1, 10);
         spawnOctopusInterval = Random.Range(12, 20);
@@ -45,7 +47,8 @@ public class EnemySpawner : MonoBehaviour {
         currentSpeedGameLevelOctopus = 2.3F; // initial speed for octopus
     }
 
-    void Update() {
+    void Update()
+    {
         currentSpeedGameLevelShark = 1.8F + (float)levelManager.GetLevel() * levelManager.GetSpeedLevelRate();
         currentSpeedGameLevelOctopus = 2.3F + (float)levelManager.GetLevel() * levelManager.GetSpeedLevelRate();
         octopusAliveTime = Random.Range(7, 11);
@@ -54,10 +57,13 @@ public class EnemySpawner : MonoBehaviour {
         HandleOctopusEnemy();
     }
 
-    void HandleSharkEnemy() {
-        if (Time.time > nextSharkSpawn) {
+    void HandleSharkEnemy()
+    {
+        if (Time.time > nextSharkSpawn)
+        {
             nextSharkSpawn = Time.time + spawnSharkInterval;
-            for (int i = 0; i < sharkWaveSize; i++) {
+            for (int i = 0; i < sharkWaveSize; i++)
+            {
                 Vector2 spawnedPosition;
                 Vector3 spriteDirection;
                 float y = Random.Range(leftScreenY1, leftScreenY2);
@@ -66,11 +72,13 @@ public class EnemySpawner : MonoBehaviour {
                 offsetXRight = Random.Range(0, 7);
                 offsetXLeft = Random.Range(-7, 0);
 
-                if (randomSide == 0) {
+                if (randomSide == 0)
+                {
                     spawnedPosition = new Vector2(leftScreenX - Random.Range(0, 7), y);
                     spriteDirection = Vector3.forward;
                 }
-                else {
+                else
+                {
                     spawnedPosition = new Vector2(rightScreenX + Random.Range(0, 7), y);
                     spriteDirection = Vector3.back;
                 }
@@ -83,19 +91,23 @@ public class EnemySpawner : MonoBehaviour {
         }
     }
 
-    void HandleOctopusEnemy() {
-        if (Time.time > nextOctopusSpawn) {
+    void HandleOctopusEnemy()
+    {
+        if (Time.time > nextOctopusSpawn)
+        {
             Vector2 spawnedPosition;
             Vector3 spriteDirection;
             nextOctopusSpawn = Time.time + spawnOctopusInterval;
             float y = Random.Range(leftScreenY1, leftScreenY2);
             float randomSide = Random.Range(-1, 2); // 0 is left, 1 is right
 
-            if (randomSide == 0) {
+            if (randomSide == 0)
+            {
                 spawnedPosition = new Vector2(leftScreenX, y);
                 spriteDirection = Vector3.forward;
             }
-            else {
+            else
+            {
                 spawnedPosition = new Vector2(rightScreenX, y);
                 spriteDirection = Vector3.back;
             }
@@ -106,14 +118,18 @@ public class EnemySpawner : MonoBehaviour {
         }
     }
 
-    public void RemoveEnemy(GameObject enemy) {
+    public void RemoveEnemy(GameObject enemy)
+    {
         int index = itemSpawner.enemies.IndexOf(enemy);
         itemSpawner.enemies.RemoveAt(index);
     }
 
-    public void DeleteAll() {
-        if (itemSpawner.enemies.Count != 0) {
-            for (int i = 0; i < itemSpawner.enemies.Count; i++) {
+    public void DeleteAll()
+    {
+        if (itemSpawner.enemies.Count != 0)
+        {
+            for (int i = 0; i < itemSpawner.enemies.Count; i++)
+            {
                 Destroy(itemSpawner.enemies[i]);
             }
             itemSpawner.enemies.Clear();

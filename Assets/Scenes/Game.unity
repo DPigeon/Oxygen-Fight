@@ -204,7 +204,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9347243}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b430568df2f7cce4cb2ed64f72a31672, type: 3}
+  m_Script: {fileID: 11500000, guid: 2bf510e1b7b80f94899b84cd38501c6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   itemsCollected: 
@@ -245,7 +245,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 06e9cec9aa2225e478bced70f18657ea, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 49ffeed7a25225347972f8253a104268, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -341,7 +341,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 907749b29b4f88f42a14d1304b58b2c6, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 8ca4729c219321849acc55a6b26607ee, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -453,12 +453,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 261103779}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ced08602fb37b164e81390b48b42c07e, type: 3}
+  m_Script: {fileID: 11500000, guid: 51af1b3d783b36942820330a20742123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SharkPrefab: {fileID: 5913197246262208242, guid: e152df147c4451140b84abd86bc0146e,
+  SharkPrefab: {fileID: 5913197246262208242, guid: 2a37e7ce1689a0f49b8a1ddd7907dddf,
     type: 3}
-  OctopusPrefab: {fileID: 9191733408893054559, guid: 8c4d29c94fa9c0d4ebdafac09fe17241,
+  OctopusPrefab: {fileID: 9191733408893054559, guid: e584e221d82caf24d9cf2792b9f8f1fa,
     type: 3}
   currentSpeedGameLevelShark: 0
   currentSpeedGameLevelOctopus: 0
@@ -594,7 +594,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 3a2ade455fa55e74da283f06cfc09408, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 569c33b665d76a34cbd2c90de10d8713, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.3
   m_Pitch: 1
@@ -767,7 +767,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Assignment 2
+          m_StringArgument: Game
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &416263259
@@ -861,7 +861,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 1fe41c71fccc64d4eb3c5c8e8d5bd9f4, type: 3}
+    m_Font: {fileID: 12800000, guid: 793952c84f482654c916a9a21ea036f1, type: 3}
     m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0
@@ -1060,7 +1060,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 603468314}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1d77fce251d74d469c7f14a0ce9dd72, type: 3}
+  m_Script: {fileID: 11500000, guid: f85d5679bf222e94097790f701f77d0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverUI: {fileID: 809553144}
@@ -1074,7 +1074,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 5fa2f1939b6c84a43aa386593bc9bb70, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 360e964ae03db6448a71d10ea6ddc2f1, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1186,18 +1186,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 642678288}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e2c8e72fd5d9734a84c087d2d898aa2, type: 3}
+  m_Script: {fileID: 11500000, guid: b5d9ca45cbf996642b189a9367658fa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SmallGoldenBarPrefab: {fileID: 5982553271109555120, guid: 5326d102d4d191641843561713e53127,
+  SmallGoldenBarPrefab: {fileID: 5982553271109555120, guid: 23e67ea1786bc11479f50dfc7a31d963,
     type: 3}
-  MediumGoldenBarPrefab: {fileID: 6488206591034568403, guid: 0c238ad9e0e5a3f4aa8f5f37388b6816,
+  MediumGoldenBarPrefab: {fileID: 6488206591034568403, guid: 3511b1d007fc87441bcecbca9591b3c5,
     type: 3}
-  GoldenBagPrefab: {fileID: 958538770286114164, guid: bfc503d413800624b84b6d83405f6064,
+  GoldenBagPrefab: {fileID: 958538770286114164, guid: c75f0ebb94b6c4e4b95a85f5befe30d7,
     type: 3}
-  NitroTankPrefab: {fileID: 5176837601803368321, guid: a26f8863df3d9724b9d5eb1337ba3119,
+  NitroTankPrefab: {fileID: 5176837601803368321, guid: 275652ace6f2ed34398dc83c74412cbf,
     type: 3}
-  variantSpecial: 1
+  variantSpecial: 0
   enemies: []
 --- !u!4 &642678290
 Transform:
@@ -1350,8 +1350,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -240, y: -240}
+  m_AnchoredPosition: {x: -0.00018310547, y: -10}
+  m_SizeDelta: {x: -240, y: -40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &809553147
 MonoBehaviour:
@@ -1366,7 +1366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9811321, g: 0.9811321, b: 0.9811321, a: 0.7411765}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.7411765}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1442,7 +1442,7 @@ SpriteRenderer:
   m_SortingLayerID: -1730278229
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 67e6317af14cf4849879c30bf0036db6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1d692a5c06b6bf147b7f463fc7591a64, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1581,7 +1581,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 362, y: 294.3}
+  m_AnchoredPosition: {x: 360, y: 285}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1052186843
@@ -1593,10 +1593,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1052186841}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28da08e479b555e48a423f2a7662c1a3, type: 3}
+  m_Script: {fileID: 11500000, guid: 78b4d5b806e112844ac3ce0f340a62ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedLevelRate: 1.2
+  speedLevelRate: 0.2
 --- !u!114 &1052186844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1616,11 +1616,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 70418ad8d74a124409f91308dc93de54, type: 3}
-    m_FontSize: 24
+    m_Font: {fileID: 12800000, guid: 793952c84f482654c916a9a21ea036f1, type: 3}
+    m_FontSize: 18
     m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 2
+    m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 0
     m_AlignByGeometry: 0
@@ -1628,7 +1628,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: level
 --- !u!222 &1052186845
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1677,7 +1677,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1177894505}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28da08e479b555e48a423f2a7662c1a3, type: 3}
+  m_Script: {fileID: 11500000, guid: 78b4d5b806e112844ac3ce0f340a62ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speedLevelRate: 0.2
@@ -1737,7 +1737,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 94dbc85c4da0d5f44a47f24dd66db2ec, type: 3}
+    m_Font: {fileID: 12800000, guid: 793952c84f482654c916a9a21ea036f1, type: 3}
     m_FontSize: 25
     m_FontStyle: 1
     m_BestFit: 0
@@ -1877,10 +1877,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1676801695}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8de27d122c6d1f24b8848554e3fb02c4, type: 3}
+  m_Script: {fileID: 11500000, guid: c5dc977cfc2629b4ca7ae8207a13f761, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Life: {fileID: 8580104360253821236, guid: ec65090f90343e844a36857bffefb27a, type: 3}
+  Life: {fileID: 8580104360253821236, guid: cfdc03ee674dc3442bf1d6d67d5d63b4, type: 3}
   lives: []
 --- !u!1 &1715786900
 GameObject:
@@ -2080,9 +2080,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8a13ad09608dcb4697e7efa938fb124, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DieMorphPrefab: {fileID: 6264410587202633455, guid: c1ea40e58a2cbfd49a06363998fc5574,
+  DieMorphPrefab: {fileID: 6264410587202633455, guid: 9f3838ce72135784eba5ae56f1dff384,
     type: 3}
-  NitroParticlesPrefab: {fileID: 2992945140590669510, guid: e18826115051c4646a6a065d4d4a02df,
+  NitroParticlesPrefab: {fileID: 2992945140590669510, guid: 19c1bba32d02cde43b37d9b0cbde7cbc,
     type: 3}
   swimSpeed: 0.9
   swimFastSpeed: 1.5
@@ -2124,7 +2124,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 317d7b4cf9a6de64d89d47becfb4e005, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 4fe9b64377d004244900624780353b1e, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.7
   m_Pitch: 1
@@ -2220,7 +2220,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 078952f679a46854d9ab67d71686a103, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 928701ae9fc794b469528fe76a4e8b7d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.7
   m_Pitch: 1
@@ -2316,7 +2316,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: b31a600d6f34a5543ac44ec65e9cb99b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: b2ab8eedafa6303479d6470deea63f21, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -2412,7 +2412,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 22e7df30eed3b9945b9c05e7a3cea484, type: 3}
+  m_audioClip: {fileID: 8300000, guid: b2ab8eedafa6303479d6470deea63f21, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -2554,7 +2554,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 1fe41c71fccc64d4eb3c5c8e8d5bd9f4, type: 3}
+    m_Font: {fileID: 12800000, guid: 793952c84f482654c916a9a21ea036f1, type: 3}
     m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0
@@ -2625,7 +2625,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5920d3e2cff79104eae79457f0cfed32, type: 2}
+  - {fileID: 2100000, guid: b12434dab5669914894cd197492013d2, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -2646,7 +2646,7 @@ ParticleSystemRenderer:
   m_SortingLayerID: 1794739299
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_RenderMode: 0
+  m_RenderMode: 3
   m_SortMode: 0
   m_MinParticleSize: 0
   m_MaxParticleSize: 0.5
@@ -7309,7 +7309,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -100}
+  m_AnchoredPosition: {x: 0, y: -80}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2070006469
@@ -7434,7 +7434,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -301.2, y: 294.3}
+  m_AnchoredPosition: {x: -290, y: 285}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2097534428
@@ -7456,19 +7456,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 70418ad8d74a124409f91308dc93de54, type: 3}
-    m_FontSize: 24
+    m_Font: {fileID: 12800000, guid: 793952c84f482654c916a9a21ea036f1, type: 3}
+    m_FontSize: 18
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 40
+    m_MaxSize: 145
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: score
 --- !u!222 &2097534429
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7486,7 +7486,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2097534426}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65d1b1604589ff54fae81af70d441399, type: 3}
+  m_Script: {fileID: 11500000, guid: 4bc9335fdf0dfaf478da1854238c90df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
@@ -7500,7 +7500,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 561c734bd5ad64341a4a6aa28f0e39bf, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 943d466b7119003438dbcf392a3034d0, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
